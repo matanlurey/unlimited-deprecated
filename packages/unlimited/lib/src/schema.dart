@@ -1,8 +1,6 @@
 /// Contains the core classes of the game.
 library;
 
-import 'dart:collection';
-
 import 'package:meta/meta.dart';
 import 'package:unlimited/src/internal.dart';
 

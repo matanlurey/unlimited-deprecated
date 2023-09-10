@@ -13,7 +13,7 @@ final class CardSet with ToDebugString {
   /// **NOTE**: The position of a card set in this list is intended to be in
   /// the order of release, but this is not guaranteed. See [CardSet] for
   /// persistence support.
-  static final Set<CardSet> values = UnmodifiableSetView({
+  static final Set<CardSet> values = Set.unmodifiable({
     sparkOfRebellion,
   });
 
