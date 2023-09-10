@@ -1,6 +1,6 @@
 # https://dart.dev/tools/pub/pubspec
 name: unlimited
-version: 0.0.1
+version: 0.0.1+1
 description: Cards database and game rules for the Star Wars Unlimited CCG.
 
 environment:

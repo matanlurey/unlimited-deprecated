@@ -10,6 +10,10 @@ where `J` is incremented when there is a breaking change to the API, and `I` is
 incremented when there is a non-breaking change to the API. If bug fixes are
 needed, an additional `+X` is appended to the version number._
 
+## 0.0.1+1
+
+_No changes, update is merely for pub.dev._
+
 ## 0.0.1
 
 **Initial release. Woohoo!**
