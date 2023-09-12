@@ -16,9 +16,7 @@ final class BaseCard extends Card {
 
   /// Creates a base card with the given properties.
   ///
-  /// ## Restrictions
-  ///
-  /// If any field is invalid, an error is thrown.
+  /// {@macro errors_thrown_if_invalid}
   BaseCard({
     required super.cardSet,
     required super.orderInSet,

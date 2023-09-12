@@ -15,5 +15,8 @@ Cards database and game rules for the [Star Wars: Unlimited][swu] CCG.
 [doc_url]: https://www.dartdocs.org/documentation/unlimited/latest
 [doc_img]: https://img.shields.io/badge/Documentation-unlimited-blue.svg
 
-- `package:unlimited/schema.dart` defines the schema for the cards.
-- `package:unlimited/cards.dart` inlines a copy of the cards database.
+This package contains the libraries:
+
+- `cards.dart`: An inlined copy of the cards database.
+- `schema.dart`: The schema for the cards database and game concepts.
+- `state.dart`: Representation of game state or card collections.

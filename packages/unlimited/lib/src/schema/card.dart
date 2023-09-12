@@ -48,9 +48,7 @@ sealed class Card with ToDebugString {
 
   /// Creates a card with the given [cardSet], [orderInSet], [name], [aspects].
   ///
-  /// ## Restrictions
-  ///
-  /// An error is thrown if any field is invalid.
+  /// {@macro errors_thrown_if_invalid}
   Card({
     required this.cardSet,
     required this.orderInSet,
@@ -121,9 +119,7 @@ sealed class PlayableCard extends Card {
 
   /// Creates a playable card with the given properties.
   ///
-  /// ## Restrictions
-  ///
-  /// If any field is invalid, an error is thrown.
+  /// {@macro errors_thrown_if_invalid}
   PlayableCard({
     required super.cardSet,
     required super.orderInSet,

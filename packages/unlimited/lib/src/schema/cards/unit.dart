@@ -36,9 +36,7 @@ final class UnitCard extends PlayableCard {
 
   /// Creates a unit card with the given properties.
   ///
-  /// ## Restrictions
-  ///
-  /// If any field is invalid, an error is thrown.
+  /// {@macro errors_thrown_if_invalid}
   UnitCard({
     required super.cardSet,
     required super.orderInSet,

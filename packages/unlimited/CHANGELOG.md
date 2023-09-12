@@ -5,10 +5,43 @@ change. We use [semantic versioning](https://dart.dev/tools/pub/versioning),
 which in sort means that the version number is incremented to represent
 breaking/non-breaking changes to the API.
 
-_ℹ️ **NOTE**: While the package is in development, the version number is `0.J.I`,
-where `J` is incremented when there is a breaking change to the API, and `I` is
-incremented when there is a non-breaking change to the API. If bug fixes are
-needed, an additional `+X` is appended to the version number._
+_ℹ️ **NOTE**: While the package is in development, the version number is
+`0.J.I`, where `J` is incremented when there is a breaking change to the API,
+and `I` is incremented when there is a non-breaking change to the API. If bug
+fixes are needed, an additional `+X` is appended to the version number._
+
+## 0.2.0
+
+### `cards.dart`
+
+- Added `CardSetInventory`, which wraps a `CardSet` and provides a list (well,
+  really a `Set`) of all the cards in the set (or at least as many that have
+  been previewed so far).
+
+- Changed `sparkOfRebellion` to be a `CardSetInventory` instead of a
+  `Set<Card>` (which is still available as the `.cards` property).
+
+### `schema.dart`
+
+- Removed `CardType`, it was redundant with the `Card` class and subclasses.
+
+### `state.dart`
+
+Added an additional library, `pacakge:unlimited/state.dart`, which contains representations of game state or card collections. For example, creating a deck:
+
+```dart
+import 'package:unlimited/state.dart';
+
+void createDeck(BaseCard base, UnitCard leader, List<Card> cards) {
+  final deck = Deck(
+    base: base
+    leader: leader
+    cards: [
+      ...cards,
+    ],
+  );
+}
+```
 
 ## 0.0.1+1
 

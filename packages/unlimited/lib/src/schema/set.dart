@@ -13,7 +13,7 @@ final class CardSet with ToDebugString {
   /// **NOTE**: The position of a card set in this list is intended to be in
   /// the order of release, but this is not guaranteed. See [CardSet] for
   /// persistence support.
-  static final Set<CardSet> values = UnmodifiableSetView({
+  static final Set<CardSet> values = Set.unmodifiable({
     sparkOfRebellion,
   });
 
@@ -27,19 +27,23 @@ final class CardSet with ToDebugString {
   /// The abbreviated name of the card set, in US English and all caps.
   ///
   /// For example, [sparkOfRebellion] has the abbreviation "SOR".
+  ///
+  /// Always a non-empty string.
   final String abbreviation;
 
   /// The full name of the card set, in US English.
   ///
   /// For example, [sparkOfRebellion] has the name "Spark of Rebellion".
+  ///
+  /// Always a non-empty string.
   final String fullName;
 
-  /// The total number of cards in this set.
+  /// The total number of cards in this set, which is always `>= 1`.
   ///
   /// **NOTE**: This is exlusive of [totalTokens].
   final int totalCards;
 
-  /// The total number of token cards in this set.
+  /// The total number of token cards in this set, which is always `>= 0`.
   final int totalTokens;
 
   const CardSet._({
@@ -55,13 +59,7 @@ final class CardSet with ToDebugString {
   /// the first letter of each word in [name], in all caps. For example the
   /// abbreviation of "Spark of Rebellion" is "SOR".
   ///
-  /// ## Restrictions
-  ///
-  /// An error is thrown if any of the following conditions are met:
-  ///
-  /// - [name] and [abbreviation] is empty.
-  /// - [totalCards] is not a positive integer, i.e. `>= 1`.
-  /// - [totalTokens] is not a non-negative integer, i.e. `>= 0`.
+  /// {@macro errors_thrown_if_invalid}
   factory CardSet(
     String name, {
     required int totalCards,

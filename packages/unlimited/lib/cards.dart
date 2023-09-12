@@ -8,9 +8,7 @@
 /// import 'package:unlimited/schema.dart';
 ///
 /// void main() {
-///   final vader = cards.sparkOfRebellion.firstWhere(
-///     (card) => card.name == 'Darth Vader',
-///   );
+///   final vader = cards.sparkOfRebellion.find(10);
 ///
 ///   // Pattern match to get the card's type.
 ///   switch (vader) {
