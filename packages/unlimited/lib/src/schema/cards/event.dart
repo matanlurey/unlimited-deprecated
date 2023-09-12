@@ -5,9 +5,7 @@ part of '../../schema.dart';
 final class EventCard extends PlayableCard {
   /// Creates an event card with the given properties.
   ///
-  /// ## Restrictions
-  ///
-  /// If any field is invalid, an error is thrown.
+  /// {@macro errors_thrown_if_invalid}
   EventCard({
     required super.cardSet,
     required super.orderInSet,

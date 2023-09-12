@@ -10,8 +10,7 @@ import 'package:unlimited/src/internal.dart';
 part 'schema/arena.dart';
 part 'schema/aspect.dart';
 part 'schema/card.dart';
-part 'schema/card_set.dart';
-part 'schema/card_type.dart';
+part 'schema/set.dart';
 part 'schema/cards/base.dart';
 part 'schema/cards/event.dart';
 part 'schema/cards/unit.dart';
@@ -29,5 +28,13 @@ part 'schema/trait.dart';
 /// may change between package versions without a breaking change version bump.
 /// To persist, store [name] instead and use [parse] or [tryParse] to retrieve
 /// the enum value.
+/// {@endtemplate}
+///
+/// {@template errors_thrown_if_invalid}
+/// ## Errors
+///
+/// This class is not intended to be used with user-provided input, and as such
+/// does not provide any error handling. If any of the fields are invalid, an
+/// error will be thrown.
 /// {@endtemplate}
 extension _DartDocMacros on Never {}

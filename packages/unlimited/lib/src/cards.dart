@@ -15,27 +15,27 @@ export 'cards/sor.dart' show sparkOfRebellion;
 /// definition of [CardSet] from the cards themselves.
 ///
 /// For a data structure to represent a collection of cards that may span
-/// multiple [CardSet]s, see [CardCollection], or for a specific deck, [Deck].
+/// multiple [CardSet]s, see [Collection], or for a specific deck, [Deck].
 ///
 /// ## Equality
 ///
-/// Two [CardSetCollection]s are equal if they reference the same [cardSet];
+/// Two [CardSetInventory]s are equal if they reference the same [cardSet];
 /// the specific cards in the collection are not considered. For a deep
-/// comparison, see [CardCollection.fromCardSets].
+/// comparison, see [Collection.fromCardSets].
 @immutable
-final class CardSetCollection {
+final class CardSetInventory {
   /// The cards in this collection.
   final Set<Card> cards;
 
   /// The card set that every card in [cards] belongs to.
   final CardSet cardSet;
 
-  /// Creates a new [CardSetCollection] for the given [cardSet] with [cards].
+  /// Creates a new [CardSetInventory] for the given [cardSet] with [cards].
   ///
   /// While [cards] does not need to be _all_ the cards in [cardSet] (i.e. due
   /// to partial releases), every card in [cards] must belong to [cardSet] or an
   /// error will be thrown.
-  factory CardSetCollection(CardSet cardSet, Set<Card> cards) {
+  factory CardSetInventory(CardSet cardSet, Set<Card> cards) {
     for (final card in cards) {
       if (card.cardSet != cardSet) {
         throw ArgumentError.value(
@@ -45,16 +45,43 @@ final class CardSetCollection {
         );
       }
     }
-    return CardSetCollection._(
+    return CardSetInventory._(
       cardSet,
       cards,
     );
   }
 
-  CardSetCollection._(
+  CardSetInventory._(
     this.cardSet,
     Set<Card> cards,
   ) : cards = Set.unmodifiable(cards);
+
+  /// Looks up a card in this collection by its [orderInSet].
+  ///
+  /// If the card is not found, throws a [StateError].
+  ///
+  /// **NOTE**: This method is _not_ highly optimized.
+  Card find(int orderInSet) {
+    final result = tryFind(orderInSet);
+    if (result != null) {
+      return result;
+    }
+    throw StateError('Card not found: $orderInSet');
+  }
+
+  /// Looks up a card in this collection by its [orderInSet].
+  ///
+  /// If the card is not found, returns `null`.
+  ///
+  /// **NOTE**: This method is _not_ highly optimized.
+  Card? tryFind(int orderInSet) {
+    for (final card in cards) {
+      if (card.orderInSet == orderInSet) {
+        return card;
+      }
+    }
+    return null;
+  }
 
   // It's expected that there will not be multiple instances of the same card
   // collection referencing the same card set, so we can use the card set as the
@@ -64,7 +91,7 @@ final class CardSetCollection {
 
   @override
   bool operator ==(Object other) {
-    if (other is! CardSetCollection) {
+    if (other is! CardSetInventory) {
       return false;
     }
     return cardSet == other.cardSet;

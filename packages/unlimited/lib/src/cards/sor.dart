@@ -1,7 +1,8 @@
+import 'package:unlimited/src/cards.dart';
 import 'package:unlimited/src/schema.dart';
 
-/// ...
-final sparkOfRebellion = <Card>{
+/// The Spark of Rebellion card set, as previewed so far by September 1, 2023.
+final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   // SOR T01.
   UpgradeCard.token(
     cardSet: CardSet.sparkOfRebellion,
@@ -694,4 +695,4 @@ final sparkOfRebellion = <Card>{
   ),
 
   // SOR 247 - 252: TBD.
-};
+});

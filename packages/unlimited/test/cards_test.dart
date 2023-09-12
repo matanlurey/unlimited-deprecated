@@ -12,7 +12,7 @@ void main() {
 
   group(CardSet.sparkOfRebellion.fullName, () {
     test('can be created', () {
-      expect(cards.sparkOfRebellion.toList, returnsNormally);
+      expect(() => cards.sparkOfRebellion, returnsNormally);
     });
   });
 }

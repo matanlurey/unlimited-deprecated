@@ -17,9 +17,7 @@ final class UpgradeCard extends PlayableCard {
 
   /// Creates an upgrade card with the given properties.
   ///
-  /// ## Restrictions
-  ///
-  /// If any field is invalid, an error is thrown.
+  /// {@macro errors_thrown_if_invalid}
   UpgradeCard({
     required super.cardSet,
     required super.orderInSet,
@@ -34,9 +32,9 @@ final class UpgradeCard extends PlayableCard {
 
   /// Creates an upgrade _token_ card with the given properties.
   ///
-  /// ## Restrictions
+  /// {@macro errors_thrown_if_invalid}
   ///
-  /// If any field is invalid, an error is thrown. See [isToken] for details.
+  /// See also [isToken], which has different validation rules for some fields.
   UpgradeCard.token({
     required super.cardSet,
     required super.orderInSet,
