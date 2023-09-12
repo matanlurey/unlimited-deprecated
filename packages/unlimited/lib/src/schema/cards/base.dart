@@ -2,12 +2,13 @@ part of '../../schema.dart';
 
 /// A base card.
 @immutable
-final class BaseCard extends Card {
+final class BaseCard extends Card with TargetCard {
   /// The health of the base.
   ///
   /// Always a positive integer, i.e. `>= 1`.
+  @override
   @nonVirtual
-  final int hp;
+  final int health;
 
   /// The location of the base.
   ///
@@ -23,9 +24,9 @@ final class BaseCard extends Card {
     required super.name,
     required super.aspects,
     required this.location,
-    this.hp = 30,
+    this.health = 30,
   }) : super(unique: false) {
-    checkPositive(hp, 'hp');
+    checkPositive(health, 'hp');
     checkNotEmpty(value: location, name: 'location');
   }
 }

@@ -12,6 +12,7 @@ topics:
   - star-wars
 
 dependencies:
+  collection: ^1.18.0
   meta: ^1.9.1
 
 dev_dependencies:

@@ -31,7 +31,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 5,
     traits: const {Trait.imperial, Trait.official},
     power: 2,
-    hp: 7,
+    health: 7,
   ),
 
   // SOR 002: TBD.
@@ -46,7 +46,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 7,
     traits: const {Trait.underworld, Trait.wookiee},
     power: 2,
-    hp: 9,
+    health: 9,
   ),
 
   // SOR 004: TBD.
@@ -61,7 +61,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 6,
     traits: const {Trait.force, Trait.rebel},
     power: 4,
-    hp: 7,
+    health: 7,
   ),
 
   // SOR 006 - 008: TBD.
@@ -76,7 +76,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 5,
     traits: const {Trait.rebel, Trait.official},
     power: 3,
-    hp: 6,
+    health: 6,
   ),
 
   // SOR 010.
@@ -89,7 +89,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 7,
     traits: const {Trait.force, Trait.imperial, Trait.sith},
     power: 5,
-    hp: 8,
+    health: 8,
   ),
 
   // SOR 011 - 020: TBD.
@@ -148,7 +148,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.vehicle, Trait.fighter},
     power: 2,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 045.
@@ -160,7 +160,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 3,
     traits: const {Trait.force, Trait.jedi},
     power: 2,
-    hp: 4,
+    health: 4,
   ),
 
   // SOR 046.
@@ -172,7 +172,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 4,
     traits: const {Trait.rebel, Trait.trooper},
     power: 3,
-    hp: 7,
+    health: 7,
   ),
 
   // SOR 047: TBD.
@@ -186,7 +186,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 5,
     traits: const {Trait.rebel},
     power: 4,
-    hp: 6,
+    health: 6,
   ),
 
   // SOR 049 - 058: TBD.
@@ -200,7 +200,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 1,
     traits: const {Trait.droid},
     power: 1,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 060 - 062: TBD.
@@ -214,7 +214,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 3,
     traits: const {Trait.fringe, Trait.trooper},
     power: 2,
-    hp: 4,
+    health: 4,
   ),
 
   // SOR 064 - 065: TBD.
@@ -229,7 +229,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 4,
     traits: const {Trait.vehicle, Trait.fighter},
     power: 3,
-    hp: 4,
+    health: 4,
   ),
 
   // SOR 067 - 073: TBD.
@@ -267,7 +267,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 3,
     traits: const {Trait.imperial},
     power: 3,
-    hp: 4,
+    health: 4,
   ),
 
   // SOR 083.
@@ -279,7 +279,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 3,
     traits: const {Trait.imperial},
     power: 2,
-    hp: 1,
+    health: 1,
   ),
 
   // SOR 084.
@@ -292,7 +292,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 4,
     traits: const {Trait.imperial, Trait.official},
     power: 2,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 085 - 127.
@@ -306,7 +306,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 1,
     traits: const {Trait.imperial, Trait.trooper},
     power: 3,
-    hp: 1,
+    health: 1,
   ),
 
   // SOR 129: TBD.
@@ -320,7 +320,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.imperial, Trait.trooper},
     power: 2,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 131: TBD.
@@ -335,7 +335,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 4,
     traits: const {Trait.imperial, Trait.vehicle, Trait.fighter},
     power: 3,
-    hp: 2,
+    health: 2,
   ),
 
   // SOR 133 - 134: TBD.
@@ -350,7 +350,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 8,
     traits: const {Trait.imperial, Trait.sith, Trait.official},
     power: 6,
-    hp: 6,
+    health: 6,
   ),
 
   // SOR 136.
@@ -401,7 +401,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.rebel, Trait.official},
     power: 2,
-    hp: 2,
+    health: 2,
   ),
 
   // SOR 190 - 194: TBD.
@@ -416,7 +416,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 4,
     traits: const {Trait.vehicle, Trait.fighter},
     power: 3,
-    hp: 4,
+    health: 4,
   ),
 
   // SOR 196.
@@ -429,7 +429,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 5,
     traits: const {Trait.underworld, Trait.wookiee},
     power: 3,
-    hp: 6,
+    health: 6,
   ),
 
   // SOR 197: TBD.
@@ -444,7 +444,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 7,
     traits: const {Trait.underworld},
     power: 6,
-    hp: 6,
+    health: 6,
   ),
 
   // SOR 199 - 219: TBD.
@@ -483,7 +483,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 1,
     traits: const {Trait.imperial, Trait.vehicle, Trait.fighter},
     power: 2,
-    hp: 1,
+    health: 1,
   ),
 
   // SOR 226.
@@ -496,7 +496,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.imperial, Trait.official},
     power: 1,
-    hp: 1,
+    health: 1,
   ),
 
   // SOR 227.
@@ -508,7 +508,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.imperial, Trait.trooper},
     power: 2,
-    hp: 2,
+    health: 2,
   ),
 
   // SOR 228.
@@ -520,7 +520,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.imperial, Trait.droid},
     power: 3,
-    hp: 2,
+    health: 2,
   ),
 
   // SOR 229.
@@ -532,7 +532,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 3,
     traits: const {Trait.imperial, Trait.trooper},
     power: 3,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 230: TBD.
@@ -547,7 +547,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 4,
     traits: const {Trait.imperial, Trait.vehicle, Trait.fighter},
     power: 3,
-    hp: 2,
+    health: 2,
   ),
 
   // SOR 232.
@@ -559,7 +559,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 6,
     traits: const {Trait.imperial, Trait.vehicle, Trait.walker},
     power: 6,
-    hp: 7,
+    health: 7,
   ),
 
   // SOR 233.
@@ -602,7 +602,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 1,
     traits: const {Trait.rebel, Trait.droid},
     power: 1,
-    hp: 4,
+    health: 4,
   ),
 
   // SOR 237.
@@ -615,7 +615,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.rebel, Trait.vehicle, Trait.fighter},
     power: 2,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 238.
@@ -628,7 +628,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.rebel, Trait.droid},
     power: 1,
-    hp: 4,
+    health: 4,
   ),
 
   // SOR 239.
@@ -640,7 +640,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 2,
     traits: const {Trait.rebel, Trait.trooper},
     power: 2,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 240.
@@ -652,7 +652,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 3,
     traits: const {Trait.rebel, Trait.trooper},
     power: 3,
-    hp: 3,
+    health: 3,
   ),
 
   // SOR 241.
@@ -665,7 +665,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 3,
     traits: const {Trait.rebel, Trait.vehicle, Trait.fighter},
     power: 2,
-    hp: 1,
+    health: 1,
   ),
 
   // SOR 242 - 243: TBD.
@@ -679,7 +679,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
     cost: 5,
     traits: const {Trait.rebel, Trait.vehicle, Trait.speeder},
     power: 3,
-    hp: 6,
+    health: 6,
   ),
 
   // SOR 245: TBD.

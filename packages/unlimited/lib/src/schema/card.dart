@@ -144,3 +144,11 @@ sealed class PlayableCard extends Card {
   /// This is `true` for all cards except [UpgradeCard.token].
   bool get isValidInDeck => true;
 }
+
+/// A card that can be targeted, i.e. a [UnitCard] or [BaseCard].
+mixin TargetCard on Card {
+  /// The health of the card.
+  ///
+  /// Always a positive integer, i.e. `>= 1`.
+  int get health;
+}
