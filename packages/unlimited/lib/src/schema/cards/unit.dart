@@ -2,7 +2,7 @@ part of '../../schema.dart';
 
 /// A unit card.
 @immutable
-final class UnitCard extends PlayableCard {
+final class UnitCard extends PlayableCard with TargetCard {
   /// The title of the card, if this is [unique].
   ///
   /// This is the title of the card as it appears on the card in US English.
@@ -27,8 +27,9 @@ final class UnitCard extends PlayableCard {
   /// The health of the unit.
   ///
   /// Always a positive integer, i.e. `>= 1`.
+  @override
   @nonVirtual
-  final int hp;
+  final int health;
 
   /// Whether the card is a leader unit.
   @nonVirtual
@@ -45,7 +46,7 @@ final class UnitCard extends PlayableCard {
     required super.cost,
     required super.traits,
     required this.power,
-    required this.hp,
+    required this.health,
     this.arena = Arena.ground,
     this.title,
   })  : isLeader = false,
@@ -54,7 +55,7 @@ final class UnitCard extends PlayableCard {
       checkNotEmpty(value: title!, name: 'title');
     }
     RangeError.checkNotNegative(power, 'power');
-    checkPositive(hp, 'hp');
+    checkPositive(health, 'hp');
   }
 
   /// Creates a leader unit card with the given properties.
@@ -71,12 +72,12 @@ final class UnitCard extends PlayableCard {
     required super.traits,
     required String this.title,
     required this.power,
-    required this.hp,
+    required this.health,
     this.arena = Arena.ground,
   })  : isLeader = true,
         super(unique: true) {
     checkNotEmpty(value: title!, name: 'title');
     RangeError.checkNotNegative(power, 'power');
-    checkPositive(hp, 'hp');
+    checkPositive(health, 'hp');
   }
 }

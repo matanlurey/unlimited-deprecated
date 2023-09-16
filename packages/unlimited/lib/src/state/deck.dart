@@ -17,14 +17,18 @@ final class Deck {
   /// The base of this deck.
   final BaseCard base;
 
-  /// The cards in this deck.
+  /// The _other_ cards in this deck.
   ///
   /// This should:
   ///
-  /// - Exclude [leader] and [base], or any other leaders or bases.
-  /// - Have at least 50 cards.
+  /// - Exclude [leader] or any other leader cards.
+  /// - Have at least 48 cards.
   /// - No more than 3 are copies of the same card.
-  final List<Card> cards;
+  final List<PlayableCard> cards;
+
+  // TODO: Add factory that takes in a list of cards, something like:
+  // factory Deck.resolveList(leader, base, [('SOR', 1, x: 1)]))
+  // It will better match how lists are defined elsewhere.
 
   /// Creates a new deck with the given [leader], [base], and other [cards].
   ///
@@ -32,30 +36,24 @@ final class Deck {
   factory Deck({
     required UnitCard leader,
     required BaseCard base,
-    required List<Card> cards,
+    required List<PlayableCard> cards,
   }) {
-    // At least 50 cards.
-    if (cards.length < 50) {
+    // At least 48 cards.
+    if (cards.length < 48) {
       throw ArgumentError.value(
         cards.length,
         'cards.length',
-        'must contain at least 50 cards',
+        'must contain at least 48 cards (i.e. 50 including leader and base)',
       );
     }
 
-    // Ensure that there are no bases or leaders in the deck and <= 3 copies.
+    // Ensure that there are no leaders in the deck and <= 3 copies.
     final count = <Card, int>{};
     for (final card in cards) {
       switch (card) {
-        case BaseCard():
-          throw ArgumentError.value(
-            card,
-            'cards',
-            'cannot contain a base card',
-          );
         case UnitCard() when card.isLeader:
           throw ArgumentError.value(
-            card,
+            card.name,
             'cards',
             'cannot contain a leader card',
           );
@@ -67,7 +65,7 @@ final class Deck {
           );
           if (total > 3) {
             throw ArgumentError.value(
-              card,
+              card.name,
               'cards',
               'cannot contain more than 3 copies of the same card',
             );

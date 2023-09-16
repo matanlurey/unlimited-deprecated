@@ -36,6 +36,7 @@ final class CardSetInventory {
   /// to partial releases), every card in [cards] must belong to [cardSet] or an
   /// error will be thrown.
   factory CardSetInventory(CardSet cardSet, Set<Card> cards) {
+    // TODO: Add check to make sure no duplicate orderInSet.
     for (final card in cards) {
       if (card.cardSet != cardSet) {
         throw ArgumentError.value(
@@ -60,9 +61,17 @@ final class CardSetInventory {
   ///
   /// If the card is not found, throws a [StateError].
   ///
+  /// If the card is found, but is not of type [T], throws a [StateError]. For
+  /// example, if you call `tryFind<UnitCard>(1)` on a collection that contains
+  /// a [BaseCard] at order `1`, an error will be thrown.
+  ///
+  /// If [debugAssertName] is provided, in debug mode (assertions enabled) the
+  /// card's name will be checked against it, exactly as written. This is useful
+  /// for debugging, but should not be relied upon.
+  ///
   /// **NOTE**: This method is _not_ highly optimized.
-  Card find(int orderInSet) {
-    final result = tryFind(orderInSet);
+  T find<T extends Card>(int orderInSet, [String? debugAssertName]) {
+    final result = tryFind<T>(orderInSet, debugAssertName);
     if (result != null) {
       return result;
     }
@@ -73,10 +82,21 @@ final class CardSetInventory {
   ///
   /// If the card is not found, returns `null`.
   ///
+  /// If the card is found, but is not of type [T], throws a [StateError]. For
+  /// example, if you call `tryFind<UnitCard>(1)` on a collection that contains
+  /// a [BaseCard] at order `1`, an error will be thrown.
+  ///
   /// **NOTE**: This method is _not_ highly optimized.
-  Card? tryFind(int orderInSet) {
+  T? tryFind<T extends Card>(int orderInSet, [String? debugAssertName]) {
     for (final card in cards) {
       if (card.orderInSet == orderInSet) {
+        if (card is! T) {
+          throw StateError('Card is not a $T: $card');
+        }
+        assert(
+          debugAssertName == null || card.name == debugAssertName,
+          'Expected $debugAssertName, got ${card.name}',
+        );
         return card;
       }
     }

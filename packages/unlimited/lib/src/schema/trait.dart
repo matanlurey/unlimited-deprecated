@@ -7,6 +7,9 @@ enum Trait with ToDebugString {
   /// Armor.
   armor,
 
+  /// Capital ship.
+  capitalShip,
+
   /// Droid.
   droid,
 

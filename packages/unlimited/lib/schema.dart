@@ -1,4 +1,4 @@
-/// Inlines a copy of the cards database.
+/// Defines the schema for the cards.
 ///
 /// ```dart
 /// // SOR 010.
