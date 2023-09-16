@@ -137,8 +137,15 @@ final class DeployedBase extends DeployedCard<BaseCard> {
 /// A play area, representing the cards associated with and in play by a player.
 @immutable
 final class Area with ToDebugString {
-  /// Amount of resources available to the player.
-  final int resources;
+  /// Cards converted to resources.
+  final List<PlayableCard> totalResources;
+
+  /// The number of resources available to the player.
+  ///
+  /// This is a number between `0` and `totalResources.length`, accounting for
+  /// how many resources have been exhausted. For example, if the player has
+  /// 5 resources, and has exhausted 3 of them, then this value is `2`.
+  final int availableResources;
 
   /// The player's base.
   final DeployedBase base;
@@ -160,18 +167,23 @@ final class Area with ToDebugString {
 
   /// Creates an area with the given properties.
   ///
+  /// If [availableResources] is not provided, it defaults to the length of
+  /// [resources] (i.e. that no resources have been exhausted).
+  ///
   /// {@macro errors_thrown_if_invalid}
   factory Area({
     required DeployedBase base,
     required UnitCard leader,
-    int resources = 0,
+    List<PlayableCard> resources = const [],
+    int? availableResources,
     List<PlayableCard> hand = const [],
     List<PlayableCard> deck = const [],
     List<PlayableCard> discard = const [],
     List<DeployedCard> inPlay = const [],
   }) {
     return Area._(
-      resources: resources,
+      totalResources: resources,
+      availableResources: availableResources ?? resources.length,
       base: base,
       leader: leader,
       hand: hand,
@@ -182,19 +194,27 @@ final class Area with ToDebugString {
   }
 
   Area._({
-    required this.resources,
+    required this.totalResources,
+    required this.availableResources,
     required this.base,
     required this.leader,
     required this.hand,
     required this.deck,
     required this.discard,
     required this.inPlay,
-  });
+  }) {
+    RangeError.checkValueInInterval(
+      availableResources,
+      0,
+      totalResources.length,
+      'availableResources',
+    );
+  }
 
   @override
   int get hashCode {
     return Object.hash(
-      resources,
+      totalResources,
       base,
       leader,
       Object.hashAll(deck),
@@ -211,7 +231,7 @@ final class Area with ToDebugString {
     }
     const list = ListEquality<void>();
     const unordered = UnorderedIterableEquality<void>();
-    return resources == other.resources &&
+    return totalResources == other.totalResources &&
         base == other.base &&
         leader == other.leader &&
         list.equals(deck, other.deck) &&
@@ -224,7 +244,7 @@ final class Area with ToDebugString {
   String toDebugString() {
     // ignore: noop_primitive_operations
     return ''
-        'Area <resources: $resources, '
+        'Area <resources: $totalResources, '
         'base: $base, '
         'leader: $leader, '
         '${hand.length} hand, '
