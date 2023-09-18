@@ -49,7 +49,7 @@ void main(List<String> args) async {
         return false;
       }
       if (!leader) {
-        return card is! UnitCard || !card.isLeader;
+        return card is UnitCard;
       }
       return true;
     });
@@ -82,7 +82,7 @@ void main(List<String> args) async {
     }
 
     if (leader == null) {
-      if (card is! UnitCard || !card.isLeader || quantity != 1) {
+      if (card is! LeaderCard || quantity != 1) {
         stderr.writeln('Expected a leader card, but got: $card (x$quantity)');
         exit(1);
       }
@@ -134,7 +134,7 @@ void main(List<String> args) async {
 
     // ignore: noop_primitive_operations
     return ''
-        '...${output.toString().replaceAll('find', 'find<PlayableCard>')}'
+        '...${output.toString().replaceAll('find', 'find<DeckCard>')}'
         '.duplicate($quantity)';
   }
 

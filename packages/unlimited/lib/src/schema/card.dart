@@ -4,7 +4,8 @@ part of '../schema.dart';
 ///
 /// ## Equality
 ///
-/// A card's equality is solely based on its [cardSet], [orderInSet], [isToken].
+/// A card's equality is solely based on its [cardSet], [orderInSet]. However,
+/// [TokenCard]s are not equal to non-token cards with the same [orderInSet].
 @immutable
 sealed class Card with ToDebugString {
   /// The set the card belongs to.
@@ -12,6 +13,9 @@ sealed class Card with ToDebugString {
   final CardSet cardSet;
 
   /// Within the set, the card's number from `1` to [CardSet.totalCards].
+  ///
+  /// If this card is a [TokenCard], this is the token's number from `1` to the
+  /// number of tokens in the set, [CardSet.totalTokens].
   @nonVirtual
   final int orderInSet;
 
@@ -37,15 +41,6 @@ sealed class Card with ToDebugString {
   @nonVirtual
   final bool unique;
 
-  /// Whether the card is a token upgrade.
-  ///
-  /// These cards are not part of the main deck, but are instead used to
-  /// represent ephemeral upgrades, such as "Experience" or "Shield". Tokens do
-  /// not have [aspects], are treated separate from other cards with the same
-  /// [orderInSet] and always have a cost of `0`.
-  @nonVirtual
-  final bool isToken;
-
   /// Creates a card with the given [cardSet], [orderInSet], [name], [aspects].
   ///
   /// {@macro errors_thrown_if_invalid}
@@ -55,7 +50,6 @@ sealed class Card with ToDebugString {
     required this.name,
     required this.aspects,
     this.unique = false,
-    this.isToken = false,
   }) {
     _checkOrderInSet();
     _checkAspectsLength();
@@ -82,7 +76,7 @@ sealed class Card with ToDebugString {
 
   @override
   @nonVirtual
-  int get hashCode => Object.hash(cardSet, orderInSet, isToken);
+  int get hashCode => Object.hash(cardSet, orderInSet, this is TokenCard);
 
   @override
   @nonVirtual
@@ -90,7 +84,7 @@ sealed class Card with ToDebugString {
     return other is Card &&
         cardSet == other.cardSet &&
         orderInSet == other.orderInSet &&
-        isToken == other.isToken;
+        this is TokenCard == other is TokenCard;
   }
 
   @override
@@ -102,7 +96,7 @@ sealed class Card with ToDebugString {
 
 /// A card that can be played, i.e. anything but a [BaseCard].
 ///
-/// Most of these cards can be included in a deck, except [UpgradeCard.token].
+/// Most of these cards can be included in a deck, except [TokenCard].
 @immutable
 sealed class PlayableCard extends Card {
   /// The cost of the card.
@@ -128,7 +122,6 @@ sealed class PlayableCard extends Card {
     required this.cost,
     required this.traits,
     super.unique,
-    super.isToken,
   }) {
     RangeError.checkNotNegative(cost, 'cost');
     RangeError.checkValueInInterval(
@@ -138,17 +131,13 @@ sealed class PlayableCard extends Card {
       'traits.length',
     );
   }
-
-  /// Whether the card is valid in a deck.
-  ///
-  /// This is `true` for all cards except [UpgradeCard.token].
-  bool get isValidInDeck => true;
 }
 
 /// A card that can be targeted, i.e. a [UnitCard] or [BaseCard].
-mixin TargetCard on Card {
+abstract final interface class TargetCard {
   /// The health of the card.
   ///
   /// Always a positive integer, i.e. `>= 1`.
   int get health;
 }
+

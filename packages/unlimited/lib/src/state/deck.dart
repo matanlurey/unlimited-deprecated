@@ -21,14 +21,11 @@ final class Deck {
   ///
   /// This should:
   ///
+  /// - Not be a [TokenCard].
   /// - Exclude [leader] or any other leader cards.
   /// - Have at least 48 cards.
   /// - No more than 3 are copies of the same card.
   final List<PlayableCard> cards;
-
-  // TODO: Add factory that takes in a list of cards, something like:
-  // factory Deck.resolveList(leader, base, [('SOR', 1, x: 1)]))
-  // It will better match how lists are defined elsewhere.
 
   /// Creates a new deck with the given [leader], [base], and other [cards].
   ///
@@ -51,7 +48,13 @@ final class Deck {
     final count = <Card, int>{};
     for (final card in cards) {
       switch (card) {
-        case UnitCard() when card.isLeader:
+        case TokenCard():
+          throw ArgumentError.value(
+            card.name,
+            'cards',
+            'cannot contain token cards',
+          );
+        case UnitCard() when card is LeaderCard:
           throw ArgumentError.value(
             card.name,
             'cards',

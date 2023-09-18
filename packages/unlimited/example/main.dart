@@ -9,11 +9,11 @@ void main() {
   switch (vader) {
     case final BaseCard card:
       print('Base:    ${card.name}: ${card.location}');
-    case final UnitCard card:
+    case final EntityCard card:
       print('Unit:    ${card.name}: ${card.title ?? '<No title>'}');
     case final EventCard card:
       print('Event:   ${card.name}');
-    case final UpgradeCard card:
+    case final AttachmentCard card:
       print('Upgrade: ${card.name}');
   }
 }

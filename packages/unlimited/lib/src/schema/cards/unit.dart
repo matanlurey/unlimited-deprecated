@@ -1,8 +1,8 @@
 part of '../../schema.dart';
 
-/// A unit card.
+/// Base class for either [UnitCard] or [LeaderCard].
 @immutable
-final class UnitCard extends PlayableCard with TargetCard {
+sealed class EntityCard extends PlayableCard implements TargetCard {
   /// The title of the card, if this is [unique].
   ///
   /// This is the title of the card as it appears on the card in US English.
@@ -31,10 +31,32 @@ final class UnitCard extends PlayableCard with TargetCard {
   @nonVirtual
   final int health;
 
-  /// Whether the card is a leader unit.
-  @nonVirtual
-  final bool isLeader;
+  /// Creates an entity card with the given properties.
+  ///
+  /// {@macro errors_thrown_if_invalid}
+  EntityCard({
+    required super.cardSet,
+    required super.orderInSet,
+    required super.name,
+    required super.aspects,
+    required super.cost,
+    required super.traits,
+    required this.power,
+    required this.health,
+    required this.arena,
+    required this.title,
+  }) : super(unique: title != null) {
+    if (title != null) {
+      checkNotEmpty(value: title!, name: 'title');
+    }
+    RangeError.checkNotNegative(power, 'power');
+    checkPositive(health, 'hp');
+  }
+}
 
+/// A unit card.
+@immutable
+final class UnitCard extends EntityCard {
   /// Creates a unit card with the given properties.
   ///
   /// {@macro errors_thrown_if_invalid}
@@ -45,39 +67,43 @@ final class UnitCard extends PlayableCard with TargetCard {
     required super.aspects,
     required super.cost,
     required super.traits,
-    required this.power,
-    required this.health,
-    this.arena = Arena.ground,
-    this.title,
-  })  : isLeader = false,
-        super(unique: title != null) {
-    if (title != null) {
-      checkNotEmpty(value: title!, name: 'title');
-    }
-    RangeError.checkNotNegative(power, 'power');
-    checkPositive(health, 'hp');
-  }
+    required super.power,
+    required super.health,
+    super.arena = Arena.ground,
+  }) : super(title: null);
 
-  /// Creates a leader unit card with the given properties.
+  /// Creates a unique unit card with the given properties.
   ///
-  /// ## Restrictions
-  ///
-  /// If any field is invalid, an error is thrown.
-  UnitCard.leader({
+  /// {@macro errors_thrown_if_invalid}
+  UnitCard.unique({
     required super.cardSet,
     required super.orderInSet,
     required super.name,
+    required String title,
     required super.aspects,
     required super.cost,
     required super.traits,
-    required String this.title,
-    required this.power,
-    required this.health,
-    this.arena = Arena.ground,
-  })  : isLeader = true,
-        super(unique: true) {
-    checkNotEmpty(value: title!, name: 'title');
-    RangeError.checkNotNegative(power, 'power');
-    checkPositive(health, 'hp');
-  }
+    required super.power,
+    required super.health,
+    super.arena = Arena.ground,
+  }) : super(title: title);
+}
+
+/// A leader card.
+@immutable
+final class LeaderCard extends UnitCard {
+  /// Creates a leader card with the given properties.
+  ///
+  /// {@macro errors_thrown_if_invalid}
+  LeaderCard({
+    required super.cardSet,
+    required super.orderInSet,
+    required super.name,
+    required super.title,
+    required super.aspects,
+    required super.cost,
+    required super.traits,
+    required super.power,
+    required super.health,
+  }) : super.unique();
 }
