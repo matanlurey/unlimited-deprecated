@@ -19,7 +19,7 @@
 library;
 
 import 'package:unlimited/cards.dart';
-import 'package:unlimited/persistence.dart';
+import 'package:unlimited/persist.dart';
 import 'package:unlimited/schema.dart';
 
 /// [sparkOfRebellion] starter deck with Luke Skywalker.
