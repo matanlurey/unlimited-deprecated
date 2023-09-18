@@ -49,7 +49,7 @@ void main(List<String> args) async {
         return false;
       }
       if (!leader) {
-        return card is UnitCard;
+        return card is! LeaderCard;
       }
       return true;
     });
@@ -116,41 +116,31 @@ void main(List<String> args) async {
         .join();
     name = name.substring(0, 1).toLowerCase() + name.substring(1);
 
-    final String quoted;
-    if (card.name.contains("'")) {
-      quoted = '"${card.name}"';
-    } else {
-      quoted = "'${card.name}'";
+    final output = StringBuffer();
+    output.writeln('// ${card.name}');
+    output.write('  CardReference(CardSet.');
+    output.write(name);
+    output.write(', ');
+    output.write(card.orderInSet.toString().padLeft(3, '0'));
+    if (quantity > 1) {
+      output.write(', $quantity');
     }
+    output.write(')');
 
-    final output = StringBuffer(
-      '$name.find(${card.orderInSet}, '
-      '$quoted)',
-    );
-
-    if (quantity == 1) {
-      return output.toString();
-    }
-
-    // ignore: noop_primitive_operations
-    return ''
-        '...${output.toString().replaceAll('find', 'find<DeckCard>')}'
-        '.duplicate($quantity)';
+    return output.toString();
   }
 
   // Now on stdout, we'll generate some Dart code.
   // There is an expectation Dart format will be run on this code.
   // This is not a full Dart generator, but it's good enough for now.
-  stdout.writeln('Deck(');
-  stdout.writeln('  leader: ${genFind(leader!)},');
-  stdout.writeln('  base: ${genFind(base!)},');
-  stdout.writeln('  cards: [');
+  stdout.writeln('[');
+  stdout.writeln('  ${genFind(leader!)},');
+  stdout.writeln('  ${genFind(base!)},');
   for (final entry in cards.entries) {
     final card = entry.key;
     final quantity = entry.value;
-    stdout.writeln('    ${genFind(card, quantity)},');
+    stdout.writeln('  ${genFind(card, quantity)},');
   }
-  stdout.writeln('  ],');
-  stdout.writeln(')');
+  stdout.writeln(']');
   stdout.writeln();
 }

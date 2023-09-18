@@ -1,205 +1,171 @@
 part of '../state.dart';
 
-/// A collection of cards that may span multiple [CardSet]s.
+/// A collection of [cards] that belongs to a specific [CardSet].
 ///
 /// This class is intended to be used to represent all of the cards that belong
-/// to a person or entity, e.g. a collection of all cards owned by a person, or
-/// all cards that are legal in a tournament.
+/// to a specific [CardSet], e.g. `sparkOfRebellion`. This is to split the
+/// definition of [CardSet] from the cards themselves.
+///
+/// For a data structure to represent a collection of cards that may span
+/// multiple [CardSet]s, see [Collection], or for a specific deck, [Deck].
 ///
 /// ## Equality
 ///
-/// Two [Collection]s are equal if they contain the same cards, and the number
-/// of copies of each card is the same. This is a **deep** equalit check, so it
-/// should be used with caution.
+/// Two [CardSetInventory]s are equal if they reference the same [cardSet];
+/// the specific cards in the collection are not considered. For a deep
+/// comparison, see [Collection.fromCardSets].
 @immutable
-final class Collection with ToDebugString {
-  // For each card set, a map of cards to the number of copies of that card.
-  final Map<CardSet, Map<Card, int>> _cards;
+final class CardSetInventory {
+  /// The cards in this collection.
+  final Set<Card> cards;
 
-  /// Creates a new [Collection] with the given [cards].
+  /// An indexed lookup table for the cards in this collection.
+  final List<Card?> _lookupCards;
+
+  /// An indexed lookup table for the tokens in this collection.
+  final List<TokenCard?> _lookupTokens;
+
+  /// The card set that every card in [cards] belongs to.
+  final CardSet cardSet;
+
+  /// Creates a new [CardSetInventory] for the given [cards] in [belongsTo].
   ///
-  /// For each copy of a card, the card is added to the collection. For example,
-  /// if [cards] contains two copies of "Darth Vader", then the collection will
-  /// contain two copies of "Darth Vader".
-  factory Collection.fromCards(Iterable<Card> cards) {
-    final map = <CardSet, Map<Card, int>>{};
+  /// If [belongsTo] is not specified, the first card's [Card.cardSet] is used.
+  ///
+  /// While [cards] does not need to be _all_ the cards in [cardSet] (i.e. due
+  /// to partial releases), every card in [cards] must belong to [cardSet] or an
+  /// error will be thrown.
+  factory CardSetInventory(Set<Card> cards, {CardSet? belongsTo}) {
+    if (belongsTo == null) {
+      if (cards.isEmpty) {
+        throw ArgumentError.value(
+          '<empty set>',
+          'cards',
+          'Must specify belongsTo if cards is empty',
+        );
+      }
+      belongsTo = cards.first.cardSet;
+    }
+
+    // Create an indexed lookup table for the cards in the set.
+    final lookupCards = List<Card?>.filled(belongsTo.totalCards, null);
+    final lookupTokens = List<TokenCard?>.filled(belongsTo.totalCards, null);
     for (final card in cards) {
-      final cardSet = map.putIfAbsent(card.cardSet, () => {});
-      cardSet.update(card, (count) => count + 1, ifAbsent: () => 1);
-    }
-    return Collection._(map);
-  }
-
-  static int _defaultCount(Card card) => 1;
-
-  /// Creates a new [Collection] containing the cards from each card set.
-  ///
-  /// For each copy of a card, a single card is added to the collection. To
-  /// set a different number of copies of a card, provide a [count] closure;
-  /// note that the number of copies of a card must be greater than zero.
-  factory Collection.fromCardSets(
-    Iterable<CardSetInventory> cardSets, {
-    int Function(Card) count = _defaultCount,
-  }) {
-    final map = <CardSet, Map<Card, int>>{};
-    for (final cardSet in cardSets) {
-      for (final card in cardSet.cards) {
-        final copies = count(card);
-        RangeError.checkNotNegative(copies, 'count');
-        if (copies == 0) {
-          continue;
-        }
-        final cardSetMap = map.putIfAbsent(card.cardSet, () => {});
-        cardSetMap.update(
+      if (card.cardSet != belongsTo) {
+        throw ArgumentError.value(
           card,
-          (count) => count + copies,
-          ifAbsent: () => copies,
+          'cards',
+          'Card does not belong to $belongsTo',
         );
       }
-    }
-    return Collection._(map);
-  }
-
-  Collection._(this._cards);
-
-  /// Returns all of the cards in this collection.
-  ///
-  /// Multiple copies of the same card will be returned multiple times.
-  ///
-  /// To get a unique list of cards, use [toSet].
-  late final Iterable<Card> allCards = _cards.values.expand((e) => e.keys);
-
-  /// Looks up a card in this collection by its [cardSet] and [orderInSet].
-  ///
-  /// If the card is not found, throws a [StateError].
-  ///
-  /// **NOTE**: This method is _not_ highly optimized.
-  Card find(CardSet cardSet, int orderInSet) {
-    final result = tryFind(cardSet, orderInSet);
-    if (result != null) {
-      return result;
-    }
-    throw StateError('Card not found: $cardSet $orderInSet');
-  }
-
-  /// Looks up a card in this collection by its [cardSet] and [orderInSet].
-  ///
-  /// If the card is not found, returns `null`.
-  ///
-  /// **NOTE**: This method is _not_ highly optimized.
-  Card? tryFind(CardSet cardSet, int orderInSet) {
-    return tryFindCopies(cardSet, orderInSet).card;
-  }
-
-  /// Looks up a card in this collection by its [cardSet] and [orderInSet].
-  ///
-  /// If the card is not found, throws a [StateError].
-  ///
-  /// **NOTE**: This method is _not_ highly optimized.
-  ({Card card, int count}) findCopies(CardSet cardSet, int orderInSet) {
-    final (:card, :count) = tryFindCopies(cardSet, orderInSet);
-    if (card != null) {
-      return (card: card, count: count);
-    }
-    throw StateError('Card not found: $cardSet $orderInSet');
-  }
-
-  /// Looks up a card in this collection by its [cardSet] and [orderInSet].
-  ///
-  /// If the card is found, returns a tuple of the card and the number of
-  /// copies of that card in this collection. If the card is not found, returns
-  /// a record of `null` and `0`.
-  ///
-  /// **NOTE**: This method is _not_ highly optimized.
-  ({Card? card, int count}) tryFindCopies(CardSet cardSet, int orderInSet) {
-    final cardSetMap = _cards[cardSet];
-    if (cardSetMap == null) {
-      return (card: null, count: 0);
-    }
-    for (final card in cardSetMap.keys) {
-      if (card.orderInSet == orderInSet) {
-        return (card: card, count: cardSetMap[card] ?? 0);
+      if (card is TokenCard) {
+        lookupTokens[card.orderInSet - 1] = card;
+      } else {
+        lookupCards[card.orderInSet - 1] = card;
       }
     }
-    return (card: null, count: 0);
-  }
 
-  @override
-  int get hashCode {
-    // Just return a hash of all of the cards, unordered.
-    return Object.hashAllUnordered(
-      _cards.values.map((e) {
-        return Object.hashAllUnordered(
-          e.entries.map((c) => Object.hash(c.key, c.value)),
-        );
-      }),
+    return CardSetInventory._(
+      cards,
+      belongsTo,
+      lookupCards,
+      lookupTokens,
     );
   }
 
+  CardSetInventory._(
+    Set<Card> cards,
+    this.cardSet,
+    this._lookupCards,
+    this._lookupTokens,
+  ) : cards = Set.unmodifiable(cards);
+
+  /// Looks up a card in this collection by its [orderInSet].
+  ///
+  /// If the card is not found, throws a [StateError].
+  ///
+  /// If the card is found, but is not of type [T], throws a [StateError]. For
+  /// example, if you call `tryFind<UnitCard>(1)` on a collection that contains
+  /// a [BaseCard] at order `1`, an error will be thrown.
+  ///
+  /// If [debugAssertName] is provided, in debug mode (assertions enabled) the
+  /// card's name will be checked against it, exactly as written. This is useful
+  /// for debugging, but should not be relied upon.
+  T find<T extends Card>(int orderInSet, [String? debugAssertName]) {
+    final result = tryFind<T>(orderInSet, debugAssertName);
+    if (result != null) {
+      return result;
+    }
+    throw StateError('Card not found: $orderInSet');
+  }
+
+  /// Looks up a token in this collection by its [orderInSet].
+  ///
+  /// If the card is not found, throws a [StateError].
+  ///
+  /// If [debugAssertName] is provided, in debug mode (assertions enabled) the
+  /// card's name will be checked against it, exactly as written. This is useful
+  /// for debugging, but should not be relied upon.
+  TokenCard findToken(int orderInSet, [String? debugAssertName]) {
+    final result = tryFindToken(orderInSet, debugAssertName);
+    if (result != null) {
+      return result;
+    }
+    throw StateError('Token not found: $orderInSet');
+  }
+
+  /// Looks up a card in this collection by its [orderInSet].
+  ///
+  /// If the card is not found, returns `null`.
+  ///
+  /// If the card is found, but is not of type [T], throws a [StateError]. For
+  /// example, if you call `tryFind<UnitCard>(1)` on a collection that contains
+  /// a [BaseCard] at order `1`, an error will be thrown.
+  T? tryFind<T extends Card>(int orderInSet, [String? debugAssertName]) {
+    final card = _lookupCards[orderInSet - 1];
+    if (card == null) {
+      return null;
+    }
+    assert(
+      debugAssertName == null || card.name == debugAssertName,
+      'Expected $debugAssertName, got ${card.name}',
+    );
+    if (card is T) {
+      return card;
+    }
+    throw StateError('Expected $T, got ${card.runtimeType}');
+  }
+
+  /// Looks up a token in this collection by its [orderInSet].
+  ///
+  /// If the card is not found, returns `null`.
+  ///
+  /// If [debugAssertName] is provided, in debug mode (assertions enabled) the
+  /// card's name will be checked against it, exactly as written. This is useful
+  /// for debugging, but should not be relied upon.
+  TokenCard? tryFindToken(int orderInSet, [String? debugAssertName]) {
+    final card = _lookupTokens[orderInSet - 1];
+    if (card == null) {
+      return null;
+    }
+    assert(
+      debugAssertName == null || card.name == debugAssertName,
+      'Expected $debugAssertName, got ${card.name}',
+    );
+    return card;
+  }
+
+  // It's expected that there will not be multiple instances of the same card
+  // collection referencing the same card set, so we can use the card set as the
+  // hash code.
+  @override
+  int get hashCode => cardSet.hashCode;
+
   @override
   bool operator ==(Object other) {
-    if (other is! Collection) {
+    if (other is! CardSetInventory) {
       return false;
     }
-    if (_cards.length != other._cards.length) {
-      return false;
-    }
-    for (final entry in _cards.entries) {
-      final otherEntry = other._cards[entry.key];
-      if (otherEntry == null) {
-        return false;
-      }
-      if (entry.value.length != otherEntry.length) {
-        return false;
-      }
-      for (final card in entry.value.keys) {
-        if (entry.value[card] != otherEntry[card]) {
-          return false;
-        }
-      }
-    }
-    return true;
+    return cardSet == other.cardSet;
   }
-
-  /// Returns the number of copies of [card] in this collection.
-  ///
-  /// This is an alias for [count].
-  int operator [](Card card) => count(card);
-
-  /// Returns the number of copies of [card] in this collection.
-  ///
-  /// This is an alias for `operator[]`.
-  @useResult
-  int count(Card card) {
-    final cardSet = _cards[card.cardSet];
-    if (cardSet == null) {
-      return 0;
-    }
-    return cardSet[card] ?? 0;
-  }
-
-  /// Returns whether this collection contains at least one copy of [card].
-  @useResult
-  bool contains(Card card) => count(card) > 0;
-
-  /// Returns a map of card sets to the number of cards in that set.
-  ///
-  /// This method is provided as a convenience, but is not guaranteed to be
-  /// cheap to compute. For use in a hot loop, or in a UI (i.e. Flutter
-  /// `build()` methods), it's highly recommended to use the methods on this
-  /// class instead, or cache the result of this method.
-  @useResult
-  Map<CardSet, Map<Card, int>> toMap() => Map.unmodifiable(_cards);
-
-  /// Returns a set of all of the cards in this collection.
-  ///
-  /// This method is provided as a convenience, but is not guaranteed to be
-  /// cheap to compute. For use in a hot loop, or in a UI (i.e. Flutter
-  /// `build()` methods), it's highly recommended to use the methods on this
-  /// class instead, or cache the result of this method.
-  @useResult
-  Set<Card> toSet() => allCards.toSet();
-
-  @override
-  String toDebugString() => 'CardCollection <${_cards.length} sets>';
 }

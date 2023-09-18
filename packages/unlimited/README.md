@@ -18,5 +18,7 @@ Cards database and game rules for the [Star Wars: Unlimited][swu] CCG.
 This package contains the libraries:
 
 - `cards.dart`: An inlined copy of the cards database.
+- `decks.dart`: A collection of pre-built decks.
+- `persist.dart`: Persistent storage assistance for game and deck state.
 - `schema.dart`: The schema for the cards database and game concepts.
 - `state.dart`: Representation of game state or card collections.

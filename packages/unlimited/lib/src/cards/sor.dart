@@ -1,5 +1,5 @@
-import 'package:unlimited/src/cards.dart';
 import 'package:unlimited/src/schema.dart';
+import 'package:unlimited/src/state.dart';
 
 /// The Spark of Rebellion card set, as previewed so far by September 1, 2023.
 final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
