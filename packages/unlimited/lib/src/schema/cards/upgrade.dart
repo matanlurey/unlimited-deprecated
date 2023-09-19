@@ -13,7 +13,7 @@ sealed class AttachmentCard extends PlayableCard {
   ///
   /// Always a non-negative integer, i.e. `>= 0`.
   @nonVirtual
-  final int bonusHp;
+  final int bonusHealth;
 
   /// Creates an attachment card with the given properties.
   ///
@@ -27,7 +27,7 @@ sealed class AttachmentCard extends PlayableCard {
     required super.traits,
     super.unique,
     this.bonusPower = 0,
-    this.bonusHp = 0,
+    this.bonusHealth = 0,
   });
 }
 
@@ -45,7 +45,7 @@ final class UpgradeCard extends AttachmentCard {
     required super.traits,
     super.unique,
     super.bonusPower,
-    super.bonusHp,
+    super.bonusHealth,
   });
 }
 
@@ -65,8 +65,8 @@ final class TokenCard extends AttachmentCard {
     required super.name,
     required super.traits,
     super.bonusPower,
-    super.bonusHp,
-  }) : super(aspects: const {}, cost: 0);
+    super.bonusHealth,
+  }) : super(aspects: const [], cost: 0);
 
   @override
   void _checkOrderInSet() {

@@ -34,8 +34,10 @@ sealed class Card with ToDebugString {
   /// Aspects that the card belongs to.
   ///
   /// Always contains at least one aspect, and up to two aspects.
+  ///
+  /// Aspects can be repeated, e.g. two [Aspect.command] aspects.
   @nonVirtual
-  final Set<Aspect> aspects;
+  final List<Aspect> aspects;
 
   /// Whether the card is unique.
   @nonVirtual
