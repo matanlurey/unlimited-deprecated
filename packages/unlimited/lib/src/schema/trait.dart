@@ -7,8 +7,14 @@ enum Trait with ToDebugString {
   /// Armor.
   armor,
 
+  /// Bounty Hunter.
+  bountyHunter,
+
   /// Capital ship.
   capitalShip,
+
+  /// Condition.
+  condition,
 
   /// Droid.
   droid,
@@ -43,8 +49,14 @@ enum Trait with ToDebugString {
   /// Lightsaber.
   lightsaber,
 
+  /// Modification.
+  modification,
+
   /// Official.
   official,
+
+  /// Plan.
+  plan,
 
   /// Rebel.
   rebel,
@@ -60,6 +72,9 @@ enum Trait with ToDebugString {
 
   /// Tactics.
   tactic,
+
+  /// Transport.
+  transport,
 
   /// Trick.
   trick,

@@ -10,6 +10,22 @@ _ℹ️ **NOTE**: While the package is in development, the version number is
 and `I` is incremented when there is a non-breaking change to the API. If bug
 fixes are needed, an additional `+X` is appended to the version number._
 
+## Unreleased
+
+**`cards.dart`**:
+
+- Added additional cards.
+
+**`schema.dart`**:
+
+- Changed `Card.aspects` to be a `List<Aspect>` instead of a `Set<Aspect>`.
+
+  There is at least one card that has multiple of the same aspect.
+
+- Renamed `AttachmentCard.bonusHp` to `bonusHealth`, for consistency.
+
+- Added a number of missing `Trait`s.
+
 ## 0.3.0
 
 **`cards.dart`**:
