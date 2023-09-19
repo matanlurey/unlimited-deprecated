@@ -134,10 +134,11 @@ sealed class PlayableCard extends Card {
 }
 
 /// A card that can be targeted, i.e. a [UnitCard] or [BaseCard].
-abstract final interface class TargetCard {
+///
+/// **NOTE**: This class should not be
+sealed class TargetCard {
   /// The health of the card.
   ///
   /// Always a positive integer, i.e. `>= 1`.
   int get health;
 }
-
