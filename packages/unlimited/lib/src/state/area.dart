@@ -163,7 +163,7 @@ final class Area with ToDebugString {
   final List<PlayableCard> discard;
 
   /// Cards in play.
-  final List<DeployedCard> inPlay;
+  final List<DeployedCard> arena;
 
   /// Creates an area with the given properties.
   ///
@@ -189,7 +189,7 @@ final class Area with ToDebugString {
       hand: hand,
       deck: deck,
       discard: discard,
-      inPlay: inPlay,
+      arena: inPlay,
     );
   }
 
@@ -201,7 +201,7 @@ final class Area with ToDebugString {
     required this.hand,
     required this.deck,
     required this.discard,
-    required this.inPlay,
+    required this.arena,
   }) {
     RangeError.checkValueInInterval(
       availableResources,
@@ -220,7 +220,7 @@ final class Area with ToDebugString {
       Object.hashAll(deck),
       Object.hashAllUnordered(hand),
       Object.hashAllUnordered(discard),
-      Object.hashAllUnordered(inPlay),
+      Object.hashAllUnordered(arena),
     );
   }
 
@@ -237,7 +237,7 @@ final class Area with ToDebugString {
         list.equals(deck, other.deck) &&
         unordered.equals(hand, other.hand) &&
         unordered.equals(discard, other.discard) &&
-        unordered.equals(inPlay, other.inPlay);
+        unordered.equals(arena, other.arena);
   }
 
   @override
@@ -250,6 +250,6 @@ final class Area with ToDebugString {
         '${hand.length} hand, '
         '${deck.length} deck, '
         '${discard.length} discard, '
-        '${inPlay.length} in play>';
+        '${arena.length} in play>';
   }
 }

@@ -2,7 +2,7 @@ part of '../../schema.dart';
 
 /// A base card.
 @immutable
-final class BaseCard extends Card with TargetCard {
+final class BaseCard extends Card implements TargetCard {
   /// The health of the base.
   ///
   /// Always a positive integer, i.e. `>= 1`.

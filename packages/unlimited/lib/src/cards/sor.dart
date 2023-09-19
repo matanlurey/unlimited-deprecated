@@ -1,10 +1,10 @@
-import 'package:unlimited/src/cards.dart';
 import 'package:unlimited/src/schema.dart';
+import 'package:unlimited/src/state.dart';
 
 /// The Spark of Rebellion card set, as previewed so far by September 1, 2023.
-final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
+final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR T01.
-  UpgradeCard.token(
+  TokenCard(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 1,
     name: 'Experience',
@@ -14,7 +14,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR T02.
-  UpgradeCard.token(
+  TokenCard(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 2,
     name: 'Shield',
@@ -22,7 +22,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 001.
-  UnitCard.leader(
+  LeaderCard(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 1,
     name: 'Director Krennic',
@@ -37,7 +37,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   // SOR 002: TBD.
 
   // SOR 003.
-  UnitCard.leader(
+  LeaderCard(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 3,
     name: 'Chewbacca',
@@ -52,7 +52,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   // SOR 004: TBD.
 
   // SOR 005.
-  UnitCard.leader(
+  LeaderCard(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 5,
     name: 'Luke Skywalker',
@@ -67,7 +67,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   // SOR 006 - 008: TBD.
 
   // SOR 009.
-  UnitCard.leader(
+  LeaderCard(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 9,
     name: 'Leia Organa',
@@ -80,7 +80,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 010.
-  UnitCard.leader(
+  LeaderCard(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 10,
     name: 'Darth Vader',
@@ -190,7 +190,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 049.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 49,
     name: 'Obi-Wan Kenobi',
@@ -298,7 +298,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 079.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 79,
     name: 'Admiral Piett',
@@ -337,7 +337,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 084.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 84,
     name: 'Grand Moff Tarkin',
@@ -379,7 +379,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 089.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 89,
     name: 'Relentless',
@@ -442,7 +442,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 129.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 129,
     name: 'Admiral Ozzel',
@@ -484,7 +484,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   // SOR 133 - 134: TBD.
 
   // SOR 135.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 135,
     name: 'Emperor Palpatine',
@@ -535,7 +535,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   // SOR 173 - 188: TBD.
 
   // SOR 189.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 189,
     name: 'Leia Organa',
@@ -575,7 +575,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 196.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 196,
     name: 'Chewbacca',
@@ -590,7 +590,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   // SOR 197: TBD.
 
   // SOR 198.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 198,
     name: 'Han Solo',
@@ -664,7 +664,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 226.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 226,
     name: 'Admiral Motti',
@@ -713,7 +713,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 230.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 230,
     name: 'General Veers',
@@ -781,7 +781,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 236.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 236,
     name: 'R2-D2',
@@ -807,7 +807,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 238.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 238,
     name: 'C-3PO',
@@ -857,7 +857,7 @@ final sparkOfRebellion = CardSetInventory(CardSet.sparkOfRebellion, {
   ),
 
   // SOR 242.
-  UnitCard(
+  UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 242,
     name: 'General Dodonna',
