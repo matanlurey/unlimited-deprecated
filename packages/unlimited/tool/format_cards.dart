@@ -23,7 +23,7 @@ import 'package:path/path.dart' as path;
 /// ```
 void main(List<String> args) {
   final results = _argParser.parse(args);
-  if (results.rest.length != 1) {
+  if (results.rest.length != 1 || results['help'] as bool) {
     io.stdout.writeln('Usage: dart tool/format_cards.dart <file.dart>');
     io.stdout.writeln(_argParser.usage);
     io.exit(1);
@@ -194,8 +194,13 @@ final _argParser = ArgParser()
   ..addOption(
     'set-definitions-path',
     help: 'Path to the "set.dart" file.',
-    valueHelp: '<path-to-set.dart>',
+    valueHelp: 'set.dart',
     defaultsTo: path.join('lib', 'src', 'schema', 'set.dart'),
+  )
+  ..addFlag(
+    'help',
+    negatable: false,
+    help: 'Prints this usage information.',
   )
   ..addFlag(
     'verbose',
