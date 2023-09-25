@@ -97,10 +97,8 @@ void main(List<String> args) {
     io.stderr.writeln('  totalTokens: ${setInfo.totalTokens}');
   }
 
-  // Starting at the back, add a comment i.e. "  // SOR 252".
-  // If the card doesn't exist, suffix it with ": TBD", i.e. "// SOR 252: TBD".
-  // Tokens are written "SOR T01", "SOR T02", etc, instead.
-  for (var i = lines.length - 1; i >= 0; i--) {
+  final cards = <_CardInfo>[];
+  for (var i = 0; i < lines.length; i++) {
     final line = lines[i];
     if (!line.contains('Card(')) {
       continue;
@@ -112,6 +110,78 @@ void main(List<String> args) {
       io.stderr.writeln('  lineEnd:     ${card.lineEnd}');
       io.stderr.writeln('  orderInSet:  ${card.orderInSet}');
     }
+    cards.add(card);
+  }
+
+  // In reverse order, add comments (and gaps) as needed.
+  var lastOrderInSet = setInfo.totalCards;
+  for (final card in cards.reversed) {
+    if (card.isToken) {
+      lines.insert(
+        card.lineStart,
+        '  // ${abbreviation.toUpperCase()} T${card.orderInSet.toString().padLeft(2, '0')}',
+      );
+      continue;
+    }
+
+    final gap = lastOrderInSet - card.orderInSet - 1;
+
+    // For each gap, insert // ABBR NNN: TBD.
+    for (var i = 0; i <= gap; i++) {
+      lines.insert(
+        card.lineEnd + 1 + i,
+        '  // ${abbreviation.toUpperCase()} ${(card.orderInSet + i + 1).toString().padLeft(3, '0')}: TBD',
+      );
+    }
+
+    // Now insert the card.
+    lines.insert(
+      card.lineStart,
+      '  // ${abbreviation.toUpperCase()} ${card.orderInSet.toString().padLeft(3, '0')}',
+    );
+
+    lastOrderInSet = card.orderInSet - 1;
+  }
+
+  // Write the file back out to a temporary file.
+  io.Directory? tmpDir;
+  try {
+    tmpDir = io.Directory.systemTemp.createTempSync('unlimited');
+    final tmpFile = io.File(path.join(tmpDir.path, path.basename(file.path)));
+    tmpFile.writeAsStringSync(lines.join('\n'));
+
+    // Run dart format on the file.
+    final dartBin = results['dart-bin'] as String;
+    final result = io.Process.runSync(
+      dartBin,
+      ['format', tmpFile.path],
+      runInShell: true,
+    );
+
+    // If failed, print the output and exit.
+    if (result.exitCode != 0) {
+      io.stdout.writeln(result.stdout);
+      io.stderr.writeln(result.stderr);
+      io.exit(result.exitCode);
+    }
+
+    // Read the file back in.
+    final formatted = tmpFile.readAsStringSync();
+
+    // If the file changed, and we're not fixing, exit with code 1.
+    final fix = results['fix'] as bool;
+    final changed = lines.join('\n') != formatted;
+    if (changed && !fix) {
+      io.stdout.writeln('File needs formatting: ${file.path}');
+      io.exit(1);
+    }
+
+    // If the file changed, and we're fixing, write it back out.
+    if (changed && fix) {
+      file.writeAsStringSync(formatted);
+    }
+  } finally {
+    tmpDir?.deleteSync(recursive: true);
   }
 }
 
@@ -152,8 +222,14 @@ final class _CardInfo {
   final int lineStart;
   final int lineEnd;
   final int orderInSet;
+  final bool isToken;
 
-  const _CardInfo(this.lineStart, this.lineEnd, this.orderInSet);
+  const _CardInfo(
+    this.lineStart,
+    this.lineEnd,
+    this.orderInSet, {
+    required this.isToken,
+  });
 
   factory _CardInfo.parse(List<String> lines, int startAt) {
     final lineStart = startAt;
@@ -184,7 +260,12 @@ final class _CardInfo {
       throw FormatException('Could not find end of card.', lines[startAt]);
     }
 
-    return _CardInfo(lineStart, lineEnd, orderInSet);
+    return _CardInfo(
+      lineStart,
+      lineEnd,
+      orderInSet,
+      isToken: lines[startAt].contains('TokenCard'),
+    );
   }
 
   static final _orderInSet = RegExp(r'orderInSet: (\d+),');
@@ -196,6 +277,14 @@ final _argParser = ArgParser()
     help: 'Path to the "set.dart" file.',
     valueHelp: 'set.dart',
     defaultsTo: path.join('lib', 'src', 'schema', 'set.dart'),
+    hide: true,
+  )
+  ..addOption(
+    'dart-bin',
+    help: 'Path to the "dart" executable.',
+    valueHelp: 'dart',
+    defaultsTo: 'dart',
+    hide: true,
   )
   ..addFlag(
     'help',
