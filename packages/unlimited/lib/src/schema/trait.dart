@@ -49,6 +49,9 @@ enum Trait with ToDebugString {
   /// Lightsaber.
   lightsaber,
 
+  /// Mandalorian.
+  mandalorian,
+
   /// Modification.
   modification,
 
@@ -60,6 +63,9 @@ enum Trait with ToDebugString {
 
   /// Rebel.
   rebel,
+
+  /// Spectre.
+  spectre,
 
   /// Speeder.
   speeder,

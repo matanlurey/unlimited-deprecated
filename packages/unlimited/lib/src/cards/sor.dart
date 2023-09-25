@@ -63,7 +63,18 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     health: 7,
   ),
   // SOR 006: TBD
-  // SOR 007: TBD
+  // SOR 007
+  LeaderCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 7,
+    name: 'Grand Moff Tarkin',
+    title: 'Oversector Governor',
+    aspects: const [Aspect.command, Aspect.villainy],
+    cost: 5,
+    traits: const {Trait.imperial, Trait.official},
+    power: 2,
+    health: 7,
+  ),
   // SOR 008: TBD
   // SOR 009
   LeaderCard(
@@ -92,12 +103,41 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR 011: TBD
   // SOR 012: TBD
   // SOR 013: TBD
-  // SOR 014: TBD
-  // SOR 015: TBD
+  // SOR 014
+  LeaderCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 14,
+    name: 'Sabine Wren',
+    title: 'Galvanized Revolutionary',
+    aspects: const [Aspect.aggression, Aspect.heroism],
+    cost: 4,
+    traits: const {Trait.mandalorian, Trait.rebel, Trait.spectre},
+    power: 2,
+    health: 5,
+  ),
+  // SOR 015
+  LeaderCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 15,
+    name: 'Boba Fett',
+    title: 'Collecting the Bounty',
+    aspects: const [Aspect.cunning, Aspect.villainy],
+    cost: 5,
+    traits: const {Trait.underworld, Trait.bountyHunter},
+    power: 4,
+    health: 7,
+  ),
   // SOR 016: TBD
   // SOR 017: TBD
   // SOR 018: TBD
-  // SOR 019: TBD
+  // SOR 019
+  BaseCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 19,
+    name: 'Security Complex',
+    location: 'Scarif',
+    aspects: const [Aspect.vigilance],
+  ),
   // SOR 020: TBD
   // SOR 021
   BaseCard(
@@ -146,9 +186,30 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR 030: TBD
   // SOR 031: TBD
   // SOR 032: TBD
-  // SOR 033: TBD
+  // SOR 033
+  UnitCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 33,
+    name: 'Death Trooper',
+    aspects: const [Aspect.vigilance, Aspect.villainy],
+    cost: 3,
+    traits: const {Trait.imperial, Trait.trooper},
+    power: 3,
+    health: 3,
+  ),
   // SOR 034: TBD
-  // SOR 035: TBD
+  // SOR 035
+  UnitCard.unique(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 35,
+    name: 'Lieutenant Childsen',
+    title: 'Death Star Prison Warden',
+    aspects: const [Aspect.vigilance, Aspect.villainy],
+    cost: 4,
+    traits: const {Trait.imperial, Trait.official},
+    power: 2,
+    health: 2,
+  ),
   // SOR 036: TBD
   // SOR 037: TBD
   // SOR 038: TBD
@@ -191,7 +252,18 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 3,
     health: 7,
   ),
-  // SOR 047: TBD
+  // SOR 047
+  UnitCard.unique(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 47,
+    name: 'Kanun Jarrus',
+    title: 'Revealed Jedi',
+    aspects: const [Aspect.vigilance, Aspect.heroism],
+    cost: 4,
+    traits: const {Trait.force, Trait.jedi, Trait.rebel, Trait.spectre},
+    power: 4,
+    health: 5,
+  ),
   // SOR 048
   UnitCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -234,7 +306,15 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR 055: TBD
   // SOR 056: TBD
   // SOR 057: TBD
-  // SOR 058: TBD
+  // SOR 058
+  EventCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 58,
+    name: 'Vigilance',
+    aspects: const [Aspect.vigilance, Aspect.vigilance],
+    cost: 4,
+    traits: const {Trait.innate},
+  ),
   // SOR 059
   UnitCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -285,7 +365,17 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 3,
     health: 4,
   ),
-  // SOR 067: TBD
+  // SOR 067
+  UnitCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 67,
+    name: 'Rugged Survivors',
+    aspects: const [Aspect.vigilance],
+    cost: 5,
+    traits: const {Trait.fringe},
+    power: 3,
+    health: 5,
+  ),
   // SOR 068: TBD
   // SOR 069
   UpgradeCard(
@@ -320,7 +410,15 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     cost: 1,
     traits: const {Trait.supply},
   ),
-  // SOR 075: TBD
+  // SOR 075
+  EventCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 75,
+    name: 'It Binds All Things',
+    aspects: const [Aspect.vigilance],
+    cost: 2,
+    traits: const {Trait.force},
+  ),
   // SOR 076: TBD
   // SOR 077: TBD
   // SOR 078
@@ -635,7 +733,18 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   ),
   // SOR 140: TBD
   // SOR 141: TBD
-  // SOR 142: TBD
+  // SOR 142
+  UnitCard.unique(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 142,
+    name: 'Sabine Wren',
+    title: 'Explosive Artist',
+    aspects: const [Aspect.aggression, Aspect.heroism],
+    cost: 2,
+    traits: const {Trait.mandalorian, Trait.rebel, Trait.spectre},
+    power: 2,
+    health: 3,
+  ),
   // SOR 143: TBD
   // SOR 144: TBD
   // SOR 145: TBD
@@ -656,7 +765,18 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR 160: TBD
   // SOR 161: TBD
   // SOR 162: TBD
-  // SOR 163: TBD
+  // SOR 163
+  UnitCard(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 163,
+    name: 'Star Wing Scout',
+    arena: Arena.space,
+    aspects: const [Aspect.aggression],
+    cost: 3,
+    traits: const {Trait.vehicle, Trait.fighter},
+    power: 4,
+    health: 1,
+  ),
   // SOR 164: TBD
   // SOR 165: TBD
   // SOR 166: TBD
@@ -726,7 +846,18 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   ),
   // SOR 190: TBD
   // SOR 191: TBD
-  // SOR 192: TBD
+  // SOR 192
+  UnitCard.unique(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 192,
+    name: 'Ezra Bridger',
+    title: 'Resourceful Troublemaker',
+    aspects: const [Aspect.cunning, Aspect.heroism],
+    cost: 3,
+    traits: const {Trait.force, Trait.rebel, Trait.spectre},
+    power: 3,
+    health: 4,
+  ),
   // SOR 193: TBD
   // SOR 194
   UnitCard(
