@@ -46,10 +46,12 @@ void main(List<String> args) async {
   final http = io.HttpClient();
   var page = 1;
   while (true) {
-    final url = base.replace(queryParameters: {
-      ...base.queryParameters,
-      'pagenumber': '$page',
-    });
+    final url = base.replace(
+      queryParameters: {
+        ...base.queryParameters,
+        'pagenumber': '$page',
+      },
+    );
     final request = await http.openUrl('GET', url);
     final response = await request.close();
     if (response.statusCode != 200) {
