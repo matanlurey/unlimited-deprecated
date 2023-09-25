@@ -113,6 +113,27 @@ void main(List<String> args) {
     cards.add(card);
   }
 
+  // If there is more than one card with the same orderInSet, exit with code 1.
+  final orderInSet = <int>{};
+  final tokenInSet = <int>{};
+  for (final card in cards) {
+    if (card.isToken) {
+      if (!tokenInSet.add(card.orderInSet)) {
+        io.stdout.writeln(
+          'Duplicate token: ${card.orderInSet} in ${file.path}',
+        );
+        io.exit(1);
+      }
+      continue;
+    }
+    if (!orderInSet.add(card.orderInSet)) {
+      io.stdout.writeln(
+        'Duplicate card: ${card.orderInSet} in ${file.path}',
+      );
+      io.exit(1);
+    }
+  }
+
   // In reverse order, add comments (and gaps) as needed.
   var lastOrderInSet = setInfo.totalCards;
   for (final card in cards.reversed) {
