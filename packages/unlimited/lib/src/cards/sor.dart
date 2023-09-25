@@ -3,7 +3,6 @@
 // In particular, the "// SOR ..." comments are automatically generated and some
 // checks are performed to ensure that the file is valid (i.e. no duplicate card
 // numbers, they are in order, etc).
-
 import 'package:unlimited/src/schema.dart';
 import 'package:unlimited/src/state.dart';
 
