@@ -100,7 +100,7 @@ void main(List<String> args) {
   final cards = <_CardInfo>[];
   for (var i = 0; i < lines.length; i++) {
     final line = lines[i];
-    if (!line.contains('Card(')) {
+    if (!line.contains(_cardConstructor)) {
       continue;
     }
     final card = _CardInfo.parse(lines, i);
@@ -109,6 +109,7 @@ void main(List<String> args) {
       io.stderr.writeln('  lineStart:   ${card.lineStart}');
       io.stderr.writeln('  lineEnd:     ${card.lineEnd}');
       io.stderr.writeln('  orderInSet:  ${card.orderInSet}');
+      io.stderr.writeln('  isToken:     ${card.isToken}');
     }
     cards.add(card);
   }
@@ -120,7 +121,7 @@ void main(List<String> args) {
     if (card.isToken) {
       if (!tokenInSet.add(card.orderInSet)) {
         io.stdout.writeln(
-          'Duplicate token: ${card.orderInSet} in ${file.path}',
+          'Duplicate token: #${card.orderInSet} in ${file.path}',
         );
         io.exit(1);
       }
@@ -128,7 +129,7 @@ void main(List<String> args) {
     }
     if (!orderInSet.add(card.orderInSet)) {
       io.stdout.writeln(
-        'Duplicate card: ${card.orderInSet} in ${file.path}',
+        'Duplicate card: #${card.orderInSet} in ${file.path}',
       );
       io.exit(1);
     }
@@ -291,6 +292,8 @@ final class _CardInfo {
 
   static final _orderInSet = RegExp(r'orderInSet: (\d+),');
 }
+
+final _cardConstructor = RegExp(r'\w+Card.?\w*\(');
 
 final _argParser = ArgParser()
   ..addOption(

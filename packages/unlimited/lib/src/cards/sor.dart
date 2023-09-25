@@ -203,10 +203,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 4,
     health: 6,
   ),
-  // SOR 049: TBD
-  // SOR 050: TBD
-  // SOR 051: TBD
-  // SOR 052: TBD
+  // SOR 049
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 49,
@@ -218,6 +215,9 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 4,
     health: 6,
   ),
+  // SOR 050: TBD
+  // SOR 051: TBD
+  // SOR 052: TBD
   // SOR 053
   UpgradeCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -332,9 +332,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     cost: 5,
     traits: const {Trait.tactic},
   ),
-  // SOR 079: TBD
-  // SOR 080: TBD
-  // SOR 081: TBD
+  // SOR 079
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 79,
@@ -346,6 +344,8 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 1,
     health: 4,
   ),
+  // SOR 080: TBD
+  // SOR 081: TBD
   // SOR 082
   UnitCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -368,8 +368,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 2,
     health: 1,
   ),
-  // SOR 084: TBD
-  // SOR 085: TBD
+  // SOR 084
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 84,
@@ -381,6 +380,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 2,
     health: 3,
   ),
+  // SOR 085: TBD
   // SOR 086
   UnitCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -405,9 +405,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 9,
     health: 9,
   ),
-  // SOR 089: TBD
-  // SOR 090: TBD
-  // SOR 091: TBD
+  // SOR 089
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 89,
@@ -419,6 +417,8 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 8,
     health: 8,
   ),
+  // SOR 090: TBD
+  // SOR 091: TBD
   // SOR 092
   EventCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -432,16 +432,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR 094: TBD
   // SOR 095: TBD
   // SOR 096: TBD
-  // SOR 097: TBD
-  // SOR 098: TBD
-  // SOR 099: TBD
-  // SOR 100: TBD
-  // SOR 101: TBD
-  // SOR 102: TBD
-  // SOR 103: TBD
-  // SOR 104: TBD
-  // SOR 105: TBD
-  // SOR 106: TBD
+  // SOR 097
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 97,
@@ -453,6 +444,11 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 1,
     health: 4,
   ),
+  // SOR 098: TBD
+  // SOR 099: TBD
+  // SOR 100: TBD
+  // SOR 101: TBD
+  // SOR 102
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 102,
@@ -465,6 +461,10 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 7,
     health: 7,
   ),
+  // SOR 103: TBD
+  // SOR 104: TBD
+  // SOR 105: TBD
+  // SOR 106: TBD
   // SOR 107
   EventCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -475,18 +475,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     traits: const {Trait.innate},
   ),
   // SOR 108: TBD
-  // SOR 109: TBD
-  // SOR 110: TBD
-  // SOR 111: TBD
-  // SOR 112: TBD
-  // SOR 113: TBD
-  // SOR 114: TBD
-  // SOR 115: TBD
-  // SOR 116: TBD
-  // SOR 117: TBD
-  // SOR 118: TBD
-  // SOR 119: TBD
-  // SOR 120: TBD
+  // SOR 109
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 109,
@@ -498,6 +487,12 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 2,
     health: 3,
   ),
+  // SOR 110: TBD
+  // SOR 111: TBD
+  // SOR 112: TBD
+  // SOR 113: TBD
+  // SOR 114: TBD
+  // SOR 115
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 115,
@@ -509,6 +504,11 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 4,
     health: 4,
   ),
+  // SOR 116: TBD
+  // SOR 117: TBD
+  // SOR 118: TBD
+  // SOR 119: TBD
+  // SOR 120: TBD
   // SOR 121
   UpgradeCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -561,7 +561,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 3,
     health: 1,
   ),
-  // SOR 129: TBD
+  // SOR 129
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 129,
@@ -599,7 +599,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   ),
   // SOR 133: TBD
   // SOR 134: TBD
-  // SOR 135: TBD
+  // SOR 135
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 135,
@@ -680,21 +680,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR 176: TBD
   // SOR 177: TBD
   // SOR 178: TBD
-  // SOR 179: TBD
-  // SOR 180: TBD
-  // SOR 181: TBD
-  // SOR 182: TBD
-  // SOR 183: TBD
-  // SOR 184: TBD
-  // SOR 185: TBD
-  // SOR 186: TBD
-  // SOR 187: TBD
-  // SOR 188: TBD
-  // SOR 189: TBD
-  // SOR 190: TBD
-  // SOR 191: TBD
-  // SOR 192: TBD
-  // SOR 193: TBD
+  // SOR 179
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 179,
@@ -706,6 +692,11 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 3,
     health: 5,
   ),
+  // SOR 180: TBD
+  // SOR 181: TBD
+  // SOR 182: TBD
+  // SOR 183: TBD
+  // SOR 184
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 184,
@@ -717,6 +708,11 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 5,
     health: 6,
   ),
+  // SOR 185: TBD
+  // SOR 186: TBD
+  // SOR 187: TBD
+  // SOR 188: TBD
+  // SOR 189
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 189,
@@ -728,6 +724,10 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 2,
     health: 2,
   ),
+  // SOR 190: TBD
+  // SOR 191: TBD
+  // SOR 192: TBD
+  // SOR 193: TBD
   // SOR 194
   UnitCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -751,9 +751,31 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 3,
     health: 4,
   ),
-  // SOR 196: TBD
+  // SOR 196
+  UnitCard.unique(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 196,
+    name: 'Chewbacca',
+    title: 'Loyal Companion',
+    aspects: const [Aspect.cunning, Aspect.heroism],
+    cost: 5,
+    traits: const {Trait.underworld, Trait.wookiee},
+    power: 3,
+    health: 6,
+  ),
   // SOR 197: TBD
-  // SOR 198: TBD
+  // SOR 198
+  UnitCard.unique(
+    cardSet: CardSet.sparkOfRebellion,
+    orderInSet: 198,
+    name: 'Han Solo',
+    title: 'Reluctant Hero',
+    aspects: const [Aspect.cunning, Aspect.heroism],
+    cost: 7,
+    traits: const {Trait.underworld},
+    power: 6,
+    health: 6,
+  ),
   // SOR 199: TBD
   // SOR 200: TBD
   // SOR 201: TBD
@@ -772,28 +794,6 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
   // SOR 214: TBD
   // SOR 215: TBD
   // SOR 216: TBD
-  UnitCard.unique(
-    cardSet: CardSet.sparkOfRebellion,
-    orderInSet: 196,
-    name: 'Chewbacca',
-    title: 'Loyal Companion',
-    aspects: const [Aspect.cunning, Aspect.heroism],
-    cost: 5,
-    traits: const {Trait.underworld, Trait.wookiee},
-    power: 3,
-    health: 6,
-  ),
-  UnitCard.unique(
-    cardSet: CardSet.sparkOfRebellion,
-    orderInSet: 198,
-    name: 'Han Solo',
-    title: 'Reluctant Hero',
-    aspects: const [Aspect.cunning, Aspect.heroism],
-    cost: 7,
-    traits: const {Trait.underworld},
-    power: 6,
-    health: 6,
-  ),
   // SOR 217
   EventCard(
     cardSet: CardSet.sparkOfRebellion,
@@ -846,7 +846,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 2,
     health: 1,
   ),
-  // SOR 226: TBD
+  // SOR 226
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 226,
@@ -891,7 +891,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 3,
     health: 3,
   ),
-  // SOR 230: TBD
+  // SOR 230
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 230,
@@ -953,7 +953,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     cost: 7,
     traits: const {Trait.innate},
   ),
-  // SOR 236: TBD
+  // SOR 236
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 236,
@@ -977,7 +977,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 2,
     health: 3,
   ),
-  // SOR 238: TBD
+  // SOR 238
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 238,
@@ -1023,8 +1023,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 2,
     health: 1,
   ),
-  // SOR 242: TBD
-  // SOR 243: TBD
+  // SOR 242
   UnitCard.unique(
     cardSet: CardSet.sparkOfRebellion,
     orderInSet: 242,
@@ -1036,6 +1035,7 @@ final sparkOfRebellion = CardSetInventory(belongsTo: CardSet.sparkOfRebellion, {
     power: 4,
     health: 4,
   ),
+  // SOR 243: TBD
   // SOR 244
   UnitCard(
     cardSet: CardSet.sparkOfRebellion,
