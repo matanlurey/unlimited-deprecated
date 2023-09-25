@@ -191,7 +191,7 @@ void main(List<String> args) {
 
     // If the file changed, and we're not fixing, exit with code 1.
     final fix = results['fix'] as bool;
-    final changed = lines.join('\n') != formatted;
+    final changed = file.readAsStringSync() != formatted;
     if (changed && !fix) {
       io.stdout.writeln('File needs formatting: ${file.path}');
       io.exit(1);
