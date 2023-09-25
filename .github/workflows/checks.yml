@@ -19,7 +19,9 @@ jobs:
 
       - name: Format
         working-directory: packages/unlimited
-        run: dart format --output=none --set-exit-if-changed .
+        run: |
+          dart format --output=none --set-exit-if-changed .
+          dart tool/format_cards.dart sor
 
       - name: Analyze
         working-directory: packages/unlimited
