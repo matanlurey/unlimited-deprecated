@@ -1,0 +1,150 @@
+A list of abilitise present in the GenCon starter decks to use for abstraction.
+
+Action: {1 Resource, Exhausts}: 
+Give a shield token to a {Herosim} unit you played this phase.
+
+Action: {1 Resource, Exhausts}:
+If you played a {Villiany} card this phase, deal 1 damage to a unit and 1 damage to a base.
+
+Epic Action:
+If you control 6+ resources, deploy this leader.
+
+On Attack:
+You may heal 2 damage from another unit.
+
+When Played/On Attack:
+Look at the top card of your deck.
+You may put it at the bottom of your deck.
+
+When Played/On Attack:
+Choose a number, then look at the top card of the deck.
+If it's cost is the chosen number, you may reveal and draw it.
+
+(Saboteur):
+On Attack:
+Ignore {Sentinel}, and defeat the defender's shields.
+
+(Restore X):
+On Attack:
+Heal 2 damage from your base.
+
+When Played:
+Either ready a resource, or exhaust a unit.
+
+(Raid X):
+On Attack:
+Gain +2 Power.
+
+When Played:
+You may attack with a unit. If it's a {Rebel} unit, it gets +2/0 for this attack.
+
+When Played:
+Give 2 Experience Tokens to another friendly {Rebel} unit.
+
+(Sentinel):
+Units in this arena can't attack your non-Sentinel units or your base.
+
+(Ambush):
+When Played:
+It may ready and attack an enemy unit.
+
+Other friendly {Rebel} units get +1/+1.
+
+(Grit):
+This unit gets +1 power for each damage on it.
+
+Action {Exhausts}:
+Play a unit that costs 3 or less from your hand (paying its cost).
+It gains Sentinel for this phase.
+
+When Attacked:
+Ready.
+
+While this unit is undamaged:
+It gains Sentinel.
+
+When Defeated:
+Give 2 Experience tokens to another friendly unit.
+If it's a {Force} unit, draw a card.
+
+On Attack:
+This unit deals combat damage before the defender.
+
+Attach to a non-VEHICLE unit.
+When Played:
+If attached unit is Luke Skywalker, heal all damage from him and give a Shield token to him.
+
+Heal 3 damage from a unit or base.
+
+Attack with a unit.
+It gets +1/+0 for this attack and deals its combat damage before the defender.
+
+Exhaust an enemy unit.
+Give a Shield token to a friendly unit that costs 3 or less.
+
+Return a non-leader unit to its owner's hand.
+
+Attack with a unit.
+It gets +3/+0 for this attack.
+
+Defeat a non-leader unit.
+
+While attacking a damaged unit, this unit gains +2/+0 and gains Overwhelm.
+(Deal excess damage to the opponent's base.)
+
+Action {T}: Play an IMPERIAL unit from your hand (paying its cost).
+It enters play ready.
+Each opponent may ready a unit.
+
+When Defeated:
+You may ready a [Vil] unit.
+
+When Played:
+You may attack with a unit.
+If it's an imperial unit, it gets +2/+0 for this attack.
+
+When Played:
+Look at an opponent’s hand.
+
+When Defeated:
+You may put this unit into play as a resource and ready it.
+
+Each friendly non-leader unit that costs 6 or more gains Ambush.
+
+When Played:
+Search the top 5 cards of your deck for up to 2 IMPERIAL cards, reveal them, and draw them. (Put the other cards on the bottom of your deck in a random order.)
+
+When Played:
+You may deal 3 damage to a space unit.
+
+Other friendly IMPERIAL units get +1/+1.
+
+When Played:
+Give 2 Experience tokens to another friendly IMPERIAL unit.
+
+When Played:
+Give a unit Sentinel for this phase.
+
+When Played:
+Deal 6 damage divided as you choose among enemy units.
+
+When this unit attacks and defeats a unit:
+You may deal the excess damage from this attack to an enemy ground unit.
+
+Attach to a non-Vehicle unit.
+When Played:
+If attached unit is Darth Vader, you may deal 4 damage to a ground unit.
+
+The first event played by each opponent each round loses all abilities.
+
+If you control a FORCE unit, this event costs [1R] less to play.  Deal 5 damage to a non-VEHICLE unit.  That unit's controller draws a card.
+
+Search the top 5 cards of your deck for a unit, reveal it, and draw it. (Put the other cards on the bottom of your deck in a random order.)
+
+Deal 4 damage to a unit.
+
+Deal 7 damage to an enemy unit unless its controller say \"no\".  If they do, draw 3 cards.
+
+A friendly IMPERIAL unit deals damage equal to its power to a unit. Then, another friendly IMPERIAL unit deals damage equal to its power to the same unit.
+
+Give a friendly unit +2/+2 for this phase. Then, it deals damage equal to its power divided as you choose among any number of other units.

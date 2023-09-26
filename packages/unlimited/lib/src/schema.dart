@@ -7,9 +7,11 @@ import 'package:unlimited/src/internal.dart';
 // We use `@macro` in this file, and it references non-existent members.
 // ignore_for_file: comment_references
 
+part 'schema/ability.dart';
 part 'schema/arena.dart';
 part 'schema/aspect.dart';
 part 'schema/card.dart';
+part 'schema/keyword.dart';
 part 'schema/set.dart';
 part 'schema/cards/base.dart';
 part 'schema/cards/event.dart';
