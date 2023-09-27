@@ -62,8 +62,20 @@ final class DeployedUnit extends DeployedCard<UnitCard> {
     required this.upgrades,
   });
 
-  /// Whether the unit is ready.
-  bool get ready => !exhausted;
+  /// Creates a copy of this unit with the given properties replaced.
+  DeployedUnit copyWith({
+    UnitCard? card,
+    int? damage,
+    bool? exhausted,
+    List<UpgradeCard>? upgrades,
+  }) {
+    return DeployedUnit._(
+      card: card ?? this.card,
+      damage: damage ?? this.damage,
+      exhausted: exhausted ?? this.exhausted,
+      upgrades: upgrades ?? this.upgrades,
+    );
+  }
 
   @override
   int get hashCode {
@@ -113,6 +125,17 @@ final class DeployedBase extends DeployedCard<BaseCard> {
     required super.card,
     required super.damage,
   });
+
+  /// Creates a copy of this base with the given properties replaced.
+  DeployedBase copyWith({
+    BaseCard? card,
+    int? damage,
+  }) {
+    return DeployedBase._(
+      card: card ?? this.card,
+      damage: damage ?? this.damage,
+    );
+  }
 
   @override
   int get hashCode => Object.hash(card, damage);
@@ -208,6 +231,29 @@ final class Area with ToDebugString {
     );
   }
 
+  /// Creates a copy of this area with the given properties replaced.
+  Area copyWith({
+    List<PlayableCard>? totalResources,
+    int? availableResources,
+    DeployedBase? base,
+    UnitCard? leader,
+    List<PlayableCard>? hand,
+    List<PlayableCard>? deck,
+    List<PlayableCard>? discard,
+    List<DeployedCard>? inPlay,
+  }) {
+    return Area._(
+      totalResources: totalResources ?? this.totalResources,
+      availableResources: availableResources ?? this.availableResources,
+      base: base ?? this.base,
+      leader: leader ?? this.leader,
+      hand: hand ?? this.hand,
+      deck: deck ?? this.deck,
+      discard: discard ?? this.discard,
+      inPlay: inPlay ?? this.inPlay,
+    );
+  }
+
   @override
   int get hashCode {
     return Object.hash(
@@ -280,6 +326,17 @@ final class Game with ToDebugString {
     required this.player1,
     required this.player2,
   });
+
+  /// Creates a copy of this game with the given properties replaced.
+  Game copyWith({
+    Area? player1,
+    Area? player2,
+  }) {
+    return Game._(
+      player1: player1 ?? this.player1,
+      player2: player2 ?? this.player2,
+    );
+  }
 
   @override
   int get hashCode => Object.hash(player1, player2);
