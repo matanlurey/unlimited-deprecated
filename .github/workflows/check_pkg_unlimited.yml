@@ -1,10 +1,16 @@
-name: Check Dart
+name: "Check package:unlimited"
 
 on:
   pull_request:
     branches: [main]
+    paths:
+      - "analysis_options.yaml"
+      - "packages/unlimited/**"
   push:
     branches: [main]
+    paths:
+      - "analysis_options.yaml"
+      - "packages/unlimited/**"
 
 jobs:
   build:

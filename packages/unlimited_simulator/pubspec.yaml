@@ -1,0 +1,22 @@
+# https://dart.dev/tools/pub/pubspec
+
+name: unlimited_simulator
+version: 0.0.0
+description: In-memory game simulator for Star Wars Unlimited.
+
+environment:
+  sdk: ^3.1.0
+
+repository: https://github.com/matanlurey/unlimited/tree/main/packages/unlimited_simulator
+issue_tracker: https://github.com/matanlurey/unlimited/issues
+topics:
+  - star-wars
+  - simulator
+
+dependencies: 
+  meta: ^1.9.1
+  unlimited: ^0.3.0
+
+# dependency_overrides:
+#  unlimited:
+#    path: ../unlimited
