@@ -26,9 +26,6 @@ sealed class DeployedCard<T extends TargetCard> with ToDebugString {
   @mustBeOverridden
   @override
   bool operator ==(Object other);
-
-  /// How much health the unit has left.
-  int get health => card.health - damage;
 }
 
 /// A deployed [UnitCard].
@@ -65,8 +62,20 @@ final class DeployedUnit extends DeployedCard<UnitCard> {
     required this.upgrades,
   });
 
-  /// Whether the unit is ready.
-  bool get ready => !exhausted;
+  /// Creates a copy of this unit with the given properties replaced.
+  DeployedUnit copyWith({
+    UnitCard? card,
+    int? damage,
+    bool? exhausted,
+    List<UpgradeCard>? upgrades,
+  }) {
+    return DeployedUnit._(
+      card: card ?? this.card,
+      damage: damage ?? this.damage,
+      exhausted: exhausted ?? this.exhausted,
+      upgrades: upgrades ?? this.upgrades,
+    );
+  }
 
   @override
   int get hashCode {
@@ -92,7 +101,7 @@ final class DeployedUnit extends DeployedCard<UnitCard> {
     // ignore: noop_primitive_operations
     return ''
         'DeployedUnit <$card: '
-        '${exhausted ? 'exhausted' : 'ready'}, '
+        '${exhausted ? 'exhausted' : ''}, '
         '$damage damage, ${upgrades.length} upgrades>';
   }
 }
@@ -117,6 +126,17 @@ final class DeployedBase extends DeployedCard<BaseCard> {
     required super.damage,
   });
 
+  /// Creates a copy of this base with the given properties replaced.
+  DeployedBase copyWith({
+    BaseCard? card,
+    int? damage,
+  }) {
+    return DeployedBase._(
+      card: card ?? this.card,
+      damage: damage ?? this.damage,
+    );
+  }
+
   @override
   int get hashCode => Object.hash(card, damage);
 
@@ -130,7 +150,7 @@ final class DeployedBase extends DeployedCard<BaseCard> {
 
   @override
   String toDebugString() {
-    return 'DeployedBase <$card: $damage damage>';
+    return 'DeployedBase <${card.name}: $damage damage>';
   }
 }
 
@@ -163,7 +183,7 @@ final class Area with ToDebugString {
   final List<PlayableCard> discard;
 
   /// Cards in play.
-  final List<DeployedCard> arena;
+  final List<DeployedCard> inPlay;
 
   /// Creates an area with the given properties.
   ///
@@ -189,7 +209,7 @@ final class Area with ToDebugString {
       hand: hand,
       deck: deck,
       discard: discard,
-      arena: inPlay,
+      inPlay: inPlay,
     );
   }
 
@@ -201,7 +221,7 @@ final class Area with ToDebugString {
     required this.hand,
     required this.deck,
     required this.discard,
-    required this.arena,
+    required this.inPlay,
   }) {
     RangeError.checkValueInInterval(
       availableResources,
@@ -211,16 +231,40 @@ final class Area with ToDebugString {
     );
   }
 
+  /// Creates a copy of this area with the given properties replaced.
+  Area copyWith({
+    List<PlayableCard>? totalResources,
+    int? availableResources,
+    DeployedBase? base,
+    UnitCard? leader,
+    List<PlayableCard>? hand,
+    List<PlayableCard>? deck,
+    List<PlayableCard>? discard,
+    List<DeployedCard>? inPlay,
+  }) {
+    return Area._(
+      totalResources: totalResources ?? this.totalResources,
+      availableResources: availableResources ?? this.availableResources,
+      base: base ?? this.base,
+      leader: leader ?? this.leader,
+      hand: hand ?? this.hand,
+      deck: deck ?? this.deck,
+      discard: discard ?? this.discard,
+      inPlay: inPlay ?? this.inPlay,
+    );
+  }
+
   @override
   int get hashCode {
     return Object.hash(
       totalResources,
+      availableResources,
       base,
       leader,
       Object.hashAll(deck),
       Object.hashAllUnordered(hand),
       Object.hashAllUnordered(discard),
-      Object.hashAllUnordered(arena),
+      Object.hashAllUnordered(inPlay),
     );
   }
 
@@ -232,24 +276,89 @@ final class Area with ToDebugString {
     const list = ListEquality<void>();
     const unordered = UnorderedIterableEquality<void>();
     return totalResources == other.totalResources &&
+        availableResources == other.availableResources &&
         base == other.base &&
         leader == other.leader &&
         list.equals(deck, other.deck) &&
         unordered.equals(hand, other.hand) &&
         unordered.equals(discard, other.discard) &&
-        unordered.equals(arena, other.arena);
+        unordered.equals(inPlay, other.inPlay);
   }
 
   @override
   String toDebugString() {
-    // ignore: noop_primitive_operations
-    return ''
-        'Area <resources: $totalResources, '
-        'base: $base, '
-        'leader: $leader, '
-        '${hand.length} hand, '
-        '${deck.length} deck, '
-        '${discard.length} discard, '
-        '${arena.length} in play>';
+    final buffer = StringBuffer();
+    buffer.writeln('Area:');
+    buffer.writeln('  Resources: $availableResources/$totalResources');
+    buffer.writeln('  Base:      $base');
+    buffer.writeln('  Leader:    ${leader.name}');
+    buffer.writeln('  Hand:      ${hand.length} cards');
+    buffer.writeln('  Deck:      ${deck.length} cards');
+    buffer.writeln('  Discard:   ${discard.length} cards');
+    buffer.writeln('  In Play:   ${inPlay.length} cards');
+    return buffer.toString();
+  }
+}
+
+/// Represents a game between two players.
+@immutable
+final class Game with ToDebugString {
+  /// The first player's area.
+  final Area player1;
+
+  /// The second player's area.
+  final Area player2;
+
+  /// Creates a game with the given properties.
+  ///
+  /// {@macro errors_thrown_if_invalid}
+  factory Game({
+    required Area player1,
+    required Area player2,
+  }) {
+    return Game._(
+      player1: player1,
+      player2: player2,
+    );
+  }
+
+  Game._({
+    required this.player1,
+    required this.player2,
+  });
+
+  /// Creates a copy of this game with the given properties replaced.
+  Game copyWith({
+    Area? player1,
+    Area? player2,
+  }) {
+    return Game._(
+      player1: player1 ?? this.player1,
+      player2: player2 ?? this.player2,
+    );
+  }
+
+  @override
+  int get hashCode => Object.hash(player1, player2);
+
+  @override
+  bool operator ==(Object other) {
+    if (other is! Game) {
+      return false;
+    }
+    return player1 == other.player1 && player2 == other.player2;
+  }
+
+  @override
+  String toDebugString() {
+    final buffer = StringBuffer();
+    buffer.writeln('Game:');
+    buffer.writeln();
+    buffer.writeln('==Player 1==');
+    buffer.writeln(player1.toDebugString());
+    buffer.writeln();
+    buffer.writeln('==Player 2==');
+    buffer.writeln(player2.toDebugString());
+    return buffer.toString();
   }
 }

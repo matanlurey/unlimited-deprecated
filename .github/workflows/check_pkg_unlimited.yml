@@ -1,0 +1,38 @@
+name: "Check package:unlimited"
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "analysis_options.yaml"
+      - "packages/unlimited/**"
+  push:
+    branches: [main]
+    paths:
+      - "analysis_options.yaml"
+      - "packages/unlimited/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        working-directory: packages/unlimited
+        run: dart pub get
+
+      - name: Format
+        working-directory: packages/unlimited
+        run: |
+          dart format --output=none --set-exit-if-changed .
+          dart tool/format_cards.dart sor
+
+      - name: Analyze
+        working-directory: packages/unlimited
+        run: dart analyze --fatal-infos --fatal-warnings .
+
+      - name: Test
+        working-directory: packages/unlimited
+        run: dart test

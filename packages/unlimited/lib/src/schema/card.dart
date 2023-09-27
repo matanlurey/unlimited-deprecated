@@ -136,9 +136,7 @@ sealed class PlayableCard extends Card {
 }
 
 /// A card that can be targeted, i.e. a [UnitCard] or [BaseCard].
-///
-/// **NOTE**: This class should not be
-sealed class TargetCard {
+sealed class TargetCard /* on UnitCard, BaseCard */ {
   /// The health of the card.
   ///
   /// Always a positive integer, i.e. `>= 1`.

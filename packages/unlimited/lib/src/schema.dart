@@ -10,11 +10,11 @@ import 'package:unlimited/src/internal.dart';
 part 'schema/arena.dart';
 part 'schema/aspect.dart';
 part 'schema/card.dart';
-part 'schema/set.dart';
 part 'schema/cards/base.dart';
 part 'schema/cards/event.dart';
 part 'schema/cards/unit.dart';
 part 'schema/cards/upgrade.dart';
+part 'schema/set.dart';
 part 'schema/trait.dart';
 
 /// This is only used to provide `@macro` support for Dartdoc.
