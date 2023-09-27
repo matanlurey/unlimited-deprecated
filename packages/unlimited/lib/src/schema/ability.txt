@@ -1,6 +1,6 @@
 A list of abilitise present in the GenCon starter decks to use for abstraction.
 
-Action: {1 Resource, Exhausts}: 
+Action: {1 Resource, Exhausts}:
 Give a shield token to a {Herosim} unit you played this phase.
 
 Action: {1 Resource, Exhausts}:

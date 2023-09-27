@@ -14,7 +14,6 @@ part 'schema/cards/base.dart';
 part 'schema/cards/event.dart';
 part 'schema/cards/unit.dart';
 part 'schema/cards/upgrade.dart';
-part 'schema/keyword.dart';
 part 'schema/set.dart';
 part 'schema/trait.dart';
 
